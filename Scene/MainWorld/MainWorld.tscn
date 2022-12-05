@@ -57,7 +57,7 @@ current = true
 position = Vector2( -411, -143 )
 
 [node name="Tree2" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( -492, 187 )
+position = Vector2( -457, 235 )
 
 [node name="Tree3" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 554, 345 )

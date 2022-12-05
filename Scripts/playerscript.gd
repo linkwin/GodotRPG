@@ -32,7 +32,7 @@ func _physics_process(delta):
 # warning-ignore:return_value_discarded
 	move_and_slide(vel)
 	
-	if Input.get_action_strength("interact1")> 0:
+	if Input.get_action_strength("interact2")> 0:
 		var fire = fire_scene.instance()
 		fire.position = dir
 		get_tree().get_current_scene().get_node("YSort").add_child(fire)
