@@ -62,7 +62,4 @@ position = Vector2( -492, 187 )
 [node name="Tree3" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 554, 345 )
 
-[node name="Node2D" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( -33, -26 )
-
 [connection signal="spawninstance" from="YSort/Player" to="YSort" method="_on_Player_spawninstance"]

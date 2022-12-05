@@ -34,7 +34,7 @@ func _physics_process(delta):
 	
 	if Input.get_action_strength("interact1")> 0:
 		var fire = fire_scene.instance()
-		fire.position = self.position + dir
+		fire.position = dir
 		get_tree().get_current_scene().get_node("YSort").add_child(fire)
 		#get_tree().get_root().get_node("/root/YSort").add_child(fire)
 		#emit_signal("spawninstance", fire)
