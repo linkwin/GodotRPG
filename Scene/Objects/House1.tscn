@@ -24,7 +24,7 @@
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 18, 4.5 )
 
-[node name="House1" type="Node2D"]
+[node name="House1" type="YSort"]
 z_index = -1
 
 [node name="Floor" type="TileMap" parent="."]
@@ -44,8 +44,8 @@ cell_quadrant_size = 8
 format = 1
 tile_data = PoolIntArray( 0, 536870912, 0 )
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( -108, -33 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -42 )
 rotation = -4.46638e-06
 
 [node name="OutDoor1" type="Area2D" parent="."]

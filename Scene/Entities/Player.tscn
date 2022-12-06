@@ -485,7 +485,7 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id=52]
 states/Idle/node = SubResource( 51 )
-states/Idle/position = Vector2( -65.4791, -49.381 )
+states/Idle/position = Vector2( -64.4791, -48.381 )
 states/Run/node = SubResource( 74 )
 states/Run/position = Vector2( -41.4791, 51.619 )
 transitions = [ "Idle", "Run", SubResource( 75 ), "Run", "Idle", SubResource( 76 ) ]
@@ -496,6 +496,8 @@ graph_offset = Vector2( -639.479, -140.381 )
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 rotation = -6.28319
+collision_layer = 15
+collision_mask = 15
 moving_platform_apply_velocity_on_leave = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

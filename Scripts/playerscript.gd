@@ -39,3 +39,9 @@ func _physics_process(delta):
 		#get_tree().get_root().get_node("/root/YSort").add_child(fire)
 		#emit_signal("spawninstance", fire)
 		print(dir)
+
+
+func _on_Building1_scenechange_to_building1():
+	print('Got it')
+	var localent =  get_tree().get_root().get_node("LocalEntities")
+	

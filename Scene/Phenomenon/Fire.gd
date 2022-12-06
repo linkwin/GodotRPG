@@ -15,7 +15,6 @@ const acc = 1000
 const friction = 2000
 
 
-
 func _physics_process(delta):
 	var input_vec = Vector2.ZERO
 	if Input.get_action_strength("interact1") != 0:
