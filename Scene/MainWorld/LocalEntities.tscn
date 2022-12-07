@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Tilesets/CollisionTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://Scene/MainWorld/new_tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://Scene/Objects/Tree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scene/Objects/Building1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/SceneSwitch.gd" type="Script" id=6]
 
 [node name="LocalEntities" type="YSort"]
+script = ExtResource( 6 )
+scene_ref = "res://Scene/Objects/House1.tscn"
 
 [node name="Tree" parent="." instance=ExtResource( 4 )]
 position = Vector2( -411, -91 )
@@ -39,3 +42,6 @@ position = Vector2( -40, -86 )
 tile_set = ExtResource( 2 )
 format = 1
 tile_data = PoolIntArray( -196613, 3, 0, -131072, 0, 0, -1, 1610612736, 0, -65536, 1610612736, 0, 131069, 3, 0, 131070, 1, 0 )
+
+[node name="PlayerStart" type="Node2D" parent="."]
+position = Vector2( 400, -19 )
