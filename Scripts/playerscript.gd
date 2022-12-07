@@ -35,10 +35,6 @@ func _physics_process(delta):
 		var fire = load("res://Scene/Phenomenon/Fire.tscn").instance()
 		fire.position = dir*60
 		get_tree().get_root().get_node("World/TranientEntities").add_child(fire)
-		#get_tree().get_root().get_node("/root/YSort").add_child(fire)
-		#emit_signal("spawninstance", fire)
-		print(dir)
-	print(position)
 
 
 
