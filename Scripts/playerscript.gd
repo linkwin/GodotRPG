@@ -2,14 +2,14 @@ extends KinematicBody2D
 
 signal spawninstance(scene_instance)
 export(PackedScene) var fire_scene
-
 const speed = 140
 var vel = Vector2.ZERO
 const acc = 1000
 const friction = 2000
 onready var animationplayer = $AnimationPlayer
-onready var animationtree = $AnimationTree
+onready var animationtree = $AnimationTree 
 onready var animationstate = animationtree.get("parameters/playback")
+
 
 var dir = Vector2(0,1)
 
@@ -39,9 +39,9 @@ func _physics_process(delta):
 		#get_tree().get_root().get_node("/root/YSort").add_child(fire)
 		#emit_signal("spawninstance", fire)
 		print(dir)
+	print(position)
 
 
-func _on_Building1_scenechange_to_building1():
-	print('Got it')
-	var localent =  get_tree().get_root().get_node("LocalEntities")
-	
+
+
+

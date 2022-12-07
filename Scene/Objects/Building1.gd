@@ -1,12 +1,15 @@
 extends YSort
 
-signal scenechange_to_building1
 
 
 func _on_Door_body_entered(body):
-	print("almost got it")
-	emit_signal("scenechange_to_building1")
-
-
+	var house1 = load("res://Scene/Objects/House1.tscn").instance()
+	var world =  get_tree().get_root().get_node("World")
+	var player = get_tree().get_root().get_node("World/TranientEntities/Player")
+	var localent =  get_tree().get_root().get_node("World/LocalEntities")
+	player.position = Vector2.ZERO
+	world.remove_child(localent)
+	world.add_child(house1)
+	
 
 
