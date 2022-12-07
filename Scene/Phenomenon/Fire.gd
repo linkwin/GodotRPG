@@ -18,14 +18,14 @@ const friction = 2000
 func _physics_process(delta):
 	var input_vec = Vector2.ZERO
 	if Input.get_action_strength("interact1") != 0:
-		input_vec = get_global_mouse_position()
+		input_vec = get_global_mouse_position() - position
 	if Input.get_action_strength("interact1") == 0:
 		input_vec = Vector2.ZERO
 	input_vec = input_vec.normalized()
 	
 	if input_vec != Vector2.ZERO:
 		vel = vel.move_toward(speed*input_vec,delta*acc)
-		look_at(-get_global_mouse_position()) 
+		look_at(position-get_global_mouse_position()) 
 		animationstate.travel("Moving")
 	else:
 		vel = vel.move_toward(Vector2.ZERO, friction*delta)
