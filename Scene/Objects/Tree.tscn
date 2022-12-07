@@ -1,13 +1,87 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Assets/Natural Objects/Tree1top.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Natural Objects/Tree1base.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Natural Objects/BurntTree1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Natural Objects/Tree1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Natural Objects/BurningTree.png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends KinematicBody2D
+
+var state = \"Live\"
+
+onready var LiveTree 	=  $Tree1
+onready var BurntTree 	=  $BurntTree1
+onready var BurningTree =  $BurningTree
+
+func _process(delta):
+	if state == \"Live\":
+		LiveTree.show()
+		BurntTree.hide()
+		BurningTree.hide()
+	if state == \"Burnt\":
+		LiveTree.hide()
+		BurntTree.show()
+		BurningTree.hide()
+	if state == \"Burning\":
+		LiveTree.hide()
+		BurntTree.hide()
+		BurningTree.show()
+	
+var timer
+
+func _on_Interaction_Base_body_entered(body):
+	print(body.name)
+	var bodytype = body.name
+	if bodytype.get_slice(\"@\", 1) == \"Fire\":
+		state = \"Burning\"
+		timer = Timer.new()
+	if state == \"Burning\":
+		print(\"TimerSTART\")
+		timer.connect(\"timeout\",self,\"do_this\")
+		timer.wait_time = 5
+		timer.one_shot = true
+		add_child(timer)
+		timer.start()
+
+func do_this():
+	if state == \"Burning\":
+		state = \"Burnt\"
+"
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 12.0
 height = 5.99998
 
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 172, 172 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 172, 172, 172 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 344, 172, 172 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "BurningTree",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10.9187, 19.125 )
+
 [node name="Tree" type="KinematicBody2D"]
+script = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 3 )
@@ -17,19 +91,50 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Tree1top" type="Sprite" parent="."]
-position = Vector2( 15, -156 )
-scale = Vector2( 3, 3 )
+[node name="Tree1" type="Sprite" parent="."]
+position = Vector2( 5.99998, -172 )
+scale = Vector2( 2.729, 2.729 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Tree1base" type="Sprite" parent="."]
-position = Vector2( 12, -143 )
+[node name="BurntTree1" type="Sprite" parent="."]
+visible = false
+position = Vector2( 6, -172 )
 scale = Vector2( 2.729, 2.729 )
-z_as_relative = false
-texture = ExtResource( 3 )
+texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="BurningTree" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 6, -172 )
+scale = Vector2( 2.729, 2.729 )
+frames = SubResource( 5 )
+animation = "BurningTree"
+frame = 2
+playing = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Interaction Base" type="Area2D" parent="."]
+position = Vector2( -1, -10 )
+collision_layer = 0
+collision_mask = 16
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Base"]
+rotation = -3.14159
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Interaction Base" to="." method="_on_Interaction_Base_body_entered"]

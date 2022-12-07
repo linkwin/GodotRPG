@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/TX Tileset Wall.png" type="Texture" id=1]
 [ext_resource path="res://Tilesets/House1.tres" type="TileSet" id=2]
-[ext_resource path="res://Scene/Buildings/Door1.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/SceneSwitch.gd" type="Script" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -500,6 +500,7 @@ tile_data = PoolIntArray( -327682, -1610612732, 0, -327681, -1610612732, 0, -393
 collision_layer = 12
 collision_mask = 12
 script = ExtResource( 3 )
+scene_ref = "res://Scene/Objects/House1.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2( 0, -2 )
@@ -510,6 +511,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 0, 40 )
+
+[connection signal="area_entered" from="Door" to="." method="_on_Door_area_entered"]
 [connection signal="area_entered" from="Door" to="Door" method="_on_Door_area_entered"]
-[connection signal="area_shape_entered" from="Door" to="Door" method="_on_Door_area_shape_entered"]
-[connection signal="body_shape_entered" from="Door" to="Door" method="_on_Door_body_shape_entered"]
+[connection signal="area_shape_entered" from="Door" to="." method="_on_Door_area_shape_entered"]
+[connection signal="body_entered" from="Door" to="Door" method="_on_Door_body_entered"]

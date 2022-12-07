@@ -40,10 +40,8 @@ func indoor():
 	
 func outdoor():
 	Global.goto_scene("res://Scene/MainWorld/MainWorld.tscn")
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+

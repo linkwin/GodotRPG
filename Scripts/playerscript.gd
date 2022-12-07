@@ -1,15 +1,14 @@
 extends KinematicBody2D
 
 signal spawninstance(scene_instance)
-export(PackedScene) var fire_scene
-
 const speed = 140
 var vel = Vector2.ZERO
 const acc = 1000
 const friction = 2000
 onready var animationplayer = $AnimationPlayer
-onready var animationtree = $AnimationTree
+onready var animationtree = $AnimationTree 
 onready var animationstate = animationtree.get("parameters/playback")
+
 
 var dir = Vector2(0,1)
 
@@ -33,9 +32,11 @@ func _physics_process(delta):
 	move_and_slide(vel)
 	
 	if Input.get_action_strength("interact2")> 0:
-		var fire = fire_scene.instance()
-		fire.position = dir
-		get_tree().get_current_scene().get_node("YSort").add_child(fire)
-		#get_tree().get_root().get_node("/root/YSort").add_child(fire)
-		#emit_signal("spawninstance", fire)
-		print(dir)
+		var fire = load("res://Scene/Phenomenon/Fire.tscn").instance()
+		fire.position = dir*60
+		get_tree().get_root().get_node("World/TranientEntities").add_child(fire)
+
+
+
+
+
