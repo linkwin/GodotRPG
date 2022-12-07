@@ -38,8 +38,6 @@ extents = Vector2( 191.5, 13.75 )
 [node name="House1" type="YSort"]
 scale = Vector2( 2, 2 )
 z_index = -1
-script = ExtResource( 2 )
-scene_ref = "res://Scene/MainWorld/LocalEntities.tscn"
 
 [node name="Floor" type="TileMap" parent="."]
 position = Vector2( -60, -39 )
@@ -62,6 +60,8 @@ tile_data = PoolIntArray( 0, 536870912, 0 )
 position = Vector2( 7, 69 )
 collision_layer = 12
 collision_mask = 12
+script = ExtResource( 2 )
+scene_ref = "res://Scene/MainWorld/LocalEntities.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OutDoor1"]
 position = Vector2( -6.5, -49 )
@@ -91,4 +91,4 @@ shape = SubResource( 6 )
 
 [node name="PlayerStart" type="Node2D" parent="."]
 
-[connection signal="body_entered" from="OutDoor1" to="." method="_on_Door_body_entered"]
+[connection signal="body_entered" from="OutDoor1" to="OutDoor1" method="_on_Door_body_entered"]
