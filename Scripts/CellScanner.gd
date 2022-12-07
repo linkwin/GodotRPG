@@ -16,22 +16,29 @@ func _ready():
 func load_all_cells():
 	print(str(grid.grid_dict.size()) + " cells to load!")
 	for i in grid.grid_dict:
-		var scene = load(grid.grid_dict[i])
-	#	get_tree().get_current_scene().get_node("YSort").add_child(scene.instance())
+		#var scene = load(grid.grid_dict[i].get_path())
+		var scene_instance = grid.grid_dict[i].instance()
+		scene_instance.name += "(1)"
+		scene_instance.connect("placeable_moved", self, "_on_Area2D_placeable_moved")
+		scene_instance.connect("placeable_placed", self, "_on_Area2D_placeable_placed")
+		scene_instance.position = grid.calculate_world_position(i)
+		get_tree().get_current_scene().get_node("YSort").add_child(scene_instance)
 
 func check_cell(cell_position):
+	# Shape Cast
 	self.position = grid.calculate_world_position(cell_position)
 	physics_query.transform = self.transform
 	var space_state = get_world_2d().direct_space_state
 	var hits = space_state.intersect_shape(physics_query)
 	
-	var scene = PackedScene.new()
-	scene.pack(get_tree().get_current_scene().get_node("YSort").get_node(self.name))
-	ResourceSaver.save("res://db/savedscene.tscn", scene)
-	#get_tree().get_current_scene().get_node("YSort").add_child(scene.instance())
-	grid.save_cell(cell_position, "res://db/savedscene.tscn")
-	#print("Number of objects hit: " + str(hits.size()))
-	#print(hits[0])
+	# Get scene instance to send for saving
+	var scene_instance = get_tree().get_current_scene().get_node("YSort").get_node(hits[0].collider.name)
+
+	grid.save_cell(cell_position, scene_instance)
+	
+	#debug
+	print("Number of objects hit: " + str(hits.size()))
+	print(hits)
 
 func _on_Area2D_placeable_moved(from):
 	grid.grid_dict.erase(from)

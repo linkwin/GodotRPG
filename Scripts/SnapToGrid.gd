@@ -3,13 +3,15 @@ extends Area2D
 signal placeable_moved(from)
 signal placeable_placed(to)
 
-export var grid :Resource= load("res://Scene/Grid/DefaultGrid.tres")
+export onready var grid :Resource= load("res://Scene/Grid/DefaultGrid.tres")
 var last_mouse_position := get_global_mouse_position()
 var selected = false
 
 func _ready():
-	$CollisionShape2D.set_owner(self)
-	$Sprite.set_owner(self)
+	pass
+	#$CollisionShape2D.set_owner(self)
+	#$Sprite.set_owner(self)
+	
 
 func _process(delta):
 	if Input.is_mouse_button_pressed(1) and selected:

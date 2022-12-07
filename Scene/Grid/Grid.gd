@@ -7,7 +7,10 @@ export var grid_dict = {} #Dictonary for saving object locations {cell_coordinat
 
 var _half_cell_size = cell_size / 2
 
-func save_cell(cell_coordinates: Vector2, scene):
+func save_cell(cell_coordinates: Vector2, scene_instance):
+	var scene = PackedScene.new()
+	scene.pack(scene_instance)
+	#ResourceSaver.save("res://db/savedscene.tscn", scene)
 	#TODO some checking, if key exists already?
 	if (scene != null):
 		grid_dict[cell_coordinates] = scene
