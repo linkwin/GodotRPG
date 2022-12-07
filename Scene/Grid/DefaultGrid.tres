@@ -4,5 +4,13 @@
 
 [resource]
 script = ExtResource( 1 )
-grid_size = Vector2( 50, 50 )
 cell_size = Vector2( 32, 32 )
+grid_dict = {
+Vector2( -7, -5 ): "res://db/savedscene.tscn",
+Vector2( -7, -2 ): "res://db/savedscene.tscn",
+Vector2( -2, -2 ): "res://db/savedscene.tscn",
+Vector2( -1, -2 ): "res://db/savedscene.tscn",
+Vector2( -1, -1 ): "res://db/savedscene.tscn",
+Vector2( -1, 0 ): "res://db/savedscene.tscn",
+Vector2( 0, -2 ): "res://db/savedscene.tscn"
+}
