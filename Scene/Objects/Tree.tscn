@@ -30,18 +30,17 @@ func _process(delta):
 var timer
 
 func _on_Interaction_Base_body_entered(body):
-	print(body.name)
 	var bodytype = body.name
-	if bodytype.get_slice(\"@\", 1) == \"Fire\":
-		state = \"Burning\"
-		timer = Timer.new()
-	if state == \"Burning\":
-		print(\"TimerSTART\")
-		timer.connect(\"timeout\",self,\"do_this\")
-		timer.wait_time = 5
-		timer.one_shot = true
-		add_child(timer)
-		timer.start()
+	if state == \"Live\":
+		if bodytype.get_slice(\"@\", 1) == \"Fire\":
+			state = \"Burning\"
+			timer = Timer.new()
+		if state == \"Burning\":
+			timer.connect(\"timeout\",self,\"do_this\")
+			timer.wait_time = 5
+			timer.one_shot = true
+			add_child(timer)
+			timer.start()
 
 func do_this():
 	if state == \"Burning\":
@@ -114,7 +113,7 @@ position = Vector2( 6, -172 )
 scale = Vector2( 2.729, 2.729 )
 frames = SubResource( 5 )
 animation = "BurningTree"
-frame = 2
+frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true

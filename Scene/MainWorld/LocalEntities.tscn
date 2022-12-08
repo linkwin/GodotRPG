@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tilesets/CollisionTiles.tres" type="TileSet" id=2]
-[ext_resource path="res://Scene/MainWorld/new_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://Tilesets/MainWorldBaseTS.tres" type="TileSet" id=3]
 [ext_resource path="res://Scene/Objects/Tree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scene/Objects/Building1.tscn" type="PackedScene" id=5]
 

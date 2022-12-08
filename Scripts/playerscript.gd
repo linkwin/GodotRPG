@@ -35,7 +35,11 @@ func _physics_process(delta):
 		var fire = load("res://Scene/Phenomenon/Fire.tscn").instance()
 		fire.position = dir*60
 		get_tree().get_root().get_node("World/TranientEntities").add_child(fire)
-
+	
+	if Input.get_action_strength("interact3")> 0:
+		var firebreath = load("res://Scene/Phenomenon/Fire.tscn").instance()
+		firebreath.position = dir*60
+		get_tree().get_root().get_node("World/TranientEntities/Player").add_child(firebreath)
 
 
 

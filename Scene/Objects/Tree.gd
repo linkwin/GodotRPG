@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var state = "Live"
+var state = "Live"
 
 onready var LiveTree 	=  $Tree1
 onready var BurntTree 	=  $BurntTree1
@@ -20,25 +20,21 @@ func _process(delta):
 		BurntTree.hide()
 		BurningTree.show()
 	
-
 var timer
-
 
 func _on_Interaction_Base_body_entered(body):
 	var bodytype = body.name
-	if bodytype.get_slice("@", 1) == "Fire":
-		state = "Burning"
-		timer = Timer.new()
-
-func _ready():
-	if state == "Burning":
-		timer.connect("timeout",self,"do_this")
-		timer.wait_time = 10
-		timer.one_shot = true
-		add_child(timer)
-		timer.start()
+	if state == "Live":
+		if bodytype.get_slice("@", 1) == "Fire":
+			state = "Burning"
+			timer = Timer.new()
+		if state == "Burning":
+			timer.connect("timeout",self,"do_this")
+			timer.wait_time = 5
+			timer.one_shot = true
+			add_child(timer)
+			timer.start()
 
 func do_this():
 	if state == "Burning":
 		state = "Burnt"
-
