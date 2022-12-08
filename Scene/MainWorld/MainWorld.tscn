@@ -26,5 +26,6 @@ z_as_relative = false
 current = true
 
 [node name="LocalEntities" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 10 )
 
 [connection signal="spawninstance" from="TranientEntities/Player" to="TranientEntities" method="_on_Player_spawninstance"]

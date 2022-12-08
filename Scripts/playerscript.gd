@@ -8,6 +8,7 @@ const friction = 2000
 onready var animationplayer = $AnimationPlayer
 onready var animationtree = $AnimationTree 
 onready var animationstate = animationtree.get("parameters/playback")
+var hasfire = false
 
 
 var dir = Vector2(0,1)
@@ -36,10 +37,11 @@ func _physics_process(delta):
 		fire.position = dir*30 +  position
 		get_tree().get_root().get_node("World/TranientEntities").add_child(fire)
 	
-	if Input.get_action_strength("interact3")> 0:
+	if not hasfire and Input.get_action_strength("interact3")> 0:
 		var firebreath = load("res://Scene/Phenomenon/Fire.tscn").instance()
-		firebreath.position = dir*60
-		get_tree().get_root().get_node("World/TranientEntities/Player").add_child(firebreath)
+		hasfire = true
+		get_tree().get_root().get_node("World/TranientEntities/Player/mouth").add_child(firebreath)
+		firebreath.rotation_degrees = 360*atan2(dir.y,dir.x)/(2*PI)+180
 
 
 

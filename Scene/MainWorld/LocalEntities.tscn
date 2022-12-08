@@ -7,15 +7,6 @@
 
 [node name="LocalEntities" type="YSort"]
 
-[node name="Tree" parent="." instance=ExtResource( 4 )]
-position = Vector2( -411, -91 )
-
-[node name="Tree2" parent="." instance=ExtResource( 4 )]
-position = Vector2( -457, 287 )
-
-[node name="Tree3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 728, 359 )
-
 [node name="Building1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 399, -60 )
 
@@ -43,3 +34,111 @@ tile_data = PoolIntArray( -196613, 3, 0, -131072, 0, 0, -1, 1610612736, 0, -6553
 
 [node name="PlayerStart" type="Node2D" parent="."]
 position = Vector2( 400, -19 )
+
+[node name="Tree" parent="." instance=ExtResource( 4 )]
+position = Vector2( -411, -91 )
+
+[node name="Tree2" parent="." instance=ExtResource( 4 )]
+position = Vector2( -457, 287 )
+
+[node name="Tree3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 728, 359 )
+
+[node name="Tree4" parent="." instance=ExtResource( 4 )]
+position = Vector2( -638, 68 )
+
+[node name="Tree5" parent="." instance=ExtResource( 4 )]
+position = Vector2( -608, -92 )
+
+[node name="Tree6" parent="." instance=ExtResource( 4 )]
+position = Vector2( 340, -230 )
+
+[node name="Tree7" parent="." instance=ExtResource( 4 )]
+position = Vector2( -287, 302 )
+
+[node name="Tree8" parent="." instance=ExtResource( 4 )]
+position = Vector2( -712, 222 )
+
+[node name="Tree9" parent="." instance=ExtResource( 4 )]
+position = Vector2( -58, -234 )
+
+[node name="Tree10" parent="." instance=ExtResource( 4 )]
+position = Vector2( -617, 381 )
+
+[node name="Tree11" parent="." instance=ExtResource( 4 )]
+position = Vector2( -857, 77 )
+
+[node name="Tree12" parent="." instance=ExtResource( 4 )]
+position = Vector2( -166, 533 )
+
+[node name="Tree13" parent="." instance=ExtResource( 4 )]
+position = Vector2( 347, 218 )
+
+[node name="Tree14" parent="." instance=ExtResource( 4 )]
+position = Vector2( -609, 920 )
+
+[node name="Tree15" parent="." instance=ExtResource( 4 )]
+position = Vector2( -2941, -196 )
+
+[node name="Tree16" parent="." instance=ExtResource( 4 )]
+position = Vector2( -3448, -274 )
+
+[node name="Tree17" parent="." instance=ExtResource( 4 )]
+position = Vector2( -3234, 82 )
+
+[node name="Tree18" parent="." instance=ExtResource( 4 )]
+position = Vector2( -3284, -167 )
+
+[node name="Tree19" parent="." instance=ExtResource( 4 )]
+position = Vector2( -3091, -352 )
+
+[node name="Tree20" parent="." instance=ExtResource( 4 )]
+position = Vector2( -3041, -10 )
+
+[node name="Tree21" parent="." instance=ExtResource( 4 )]
+position = Vector2( 3330, -1699 )
+
+[node name="Tree22" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1808, -1493 )
+
+[node name="Tree23" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1231, -1379 )
+
+[node name="Tree24" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1708, -1685 )
+
+[node name="Tree25" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1580, -1500 )
+
+[node name="Tree26" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1573, -1257 )
+
+[node name="Tree27" parent="." instance=ExtResource( 4 )]
+position = Vector2( 765, 1258 )
+
+[node name="Tree28" parent="." instance=ExtResource( 4 )]
+position = Vector2( 465, 1045 )
+
+[node name="Tree29" parent="." instance=ExtResource( 4 )]
+position = Vector2( 686, 1565 )
+
+[node name="Tree30" parent="." instance=ExtResource( 4 )]
+position = Vector2( -625, 1422 )
+
+[node name="Tree31" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2817, -367 )
+
+[node name="Tree32" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2197, 82 )
+
+[node name="Tree33" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1876, 40 )
+
+[node name="Tree34" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1912, 275 )
+
+[node name="Tree35" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2048, 161 )
+
+[node name="Tree36" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2005, -32 )
