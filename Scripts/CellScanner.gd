@@ -11,7 +11,7 @@ func _ready():
 	physics_query.collide_with_areas = true
 	physics_query.collide_with_bodies = true
 	physics_query.collision_layer = self.collision_layer
-	load_all_cells()
+	#load_all_cells()
 	
 func load_all_cells():
 	print(str(grid.grid_dict.size()) + " cells to load!")
@@ -22,7 +22,7 @@ func load_all_cells():
 		scene_instance.connect("placeable_moved", self, "_on_Area2D_placeable_moved")
 		scene_instance.connect("placeable_placed", self, "_on_Area2D_placeable_placed")
 		scene_instance.position = grid.calculate_world_position(i)
-		get_tree().get_current_scene().get_node("YSort").add_child(scene_instance)
+		get_tree().get_current_scene().get_node("LocalEntities").add_child(scene_instance)
 
 func check_cell(cell_position):
 	# Shape Cast
@@ -32,7 +32,7 @@ func check_cell(cell_position):
 	var hits = space_state.intersect_shape(physics_query)
 	
 	# Get scene instance to send for saving
-	var scene_instance = get_tree().get_current_scene().get_node("YSort").get_node(hits[0].collider.name)
+	var scene_instance = get_tree().get_current_scene().get_node("LocalEntities").get_node(hits[0].collider.name)
 
 	grid.save_cell(cell_position, scene_instance)
 	

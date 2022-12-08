@@ -8,10 +8,7 @@ var last_mouse_position := get_global_mouse_position()
 var selected = false
 
 func _ready():
-	pass
-	#$CollisionShape2D.set_owner(self)
-	#$Sprite.set_owner(self)
-	
+	get_node("/root/FuncLib").set_children_owned(self)
 
 func _process(delta):
 	if Input.is_mouse_button_pressed(1) and selected:
