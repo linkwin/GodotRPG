@@ -70,7 +70,7 @@ one_way_collision_margin = 0.0
 
 [node name="walls" type="StaticBody2D" parent="."]
 position = Vector2( -1.5, 0 )
-collision_layer = 15
+collision_layer = 1039
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls"]

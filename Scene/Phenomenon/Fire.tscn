@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Assets/Magic/Fire Spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scene/Phenomenon/Fire.gd" type="Script" id=2]
@@ -477,6 +477,8 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=39]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+
 [sub_resource type="AnimationNodeStateMachine" id=11]
 states/Birth/node = SubResource( 14 )
 states/Birth/position = Vector2( 786, 43 )
@@ -495,18 +497,18 @@ states/SpeedingUp/position = Vector2( 617, 137 )
 states/Spray/node = SubResource( 21 )
 states/Spray/position = Vector2( 401, 137 )
 states/SprayStrt/node = SubResource( 22 )
-states/SprayStrt/position = Vector2( 401, 43 )
+states/SprayStrt/position = Vector2( 392, 43 )
 states/Stationary/node = SubResource( 13 )
 states/Stationary/position = Vector2( 861, 216 )
-transitions = [ "Birth", "SpeedingUp", SubResource( 23 ), "SpeedingUp", "Moving", SubResource( 24 ), "Moving", "SlowingDown", SubResource( 25 ), "SprayStrt", "Spray", SubResource( 28 ), "Birth", "Decay", SubResource( 29 ), "Stationary", "Decay", SubResource( 30 ), "SlowingDown", "Stationary", SubResource( 31 ), "SlowingDown", "Decay", SubResource( 32 ), "Burst", "Stationary", SubResource( 33 ), "Burst", "SpeedingUp", SubResource( 34 ), "Spray", "SpeedingUp", SubResource( 35 ), "Spray", "Decay", SubResource( 36 ), "Birth", "Stationary", SubResource( 37 ), "Stationary", "SpeedingUp", SubResource( 38 ), "Spray", "Stationary", SubResource( 39 ) ]
+transitions = [ "Birth", "SpeedingUp", SubResource( 23 ), "SpeedingUp", "Moving", SubResource( 24 ), "Moving", "SlowingDown", SubResource( 25 ), "SprayStrt", "Spray", SubResource( 28 ), "Birth", "Decay", SubResource( 29 ), "Stationary", "Decay", SubResource( 30 ), "SlowingDown", "Stationary", SubResource( 31 ), "SlowingDown", "Decay", SubResource( 32 ), "Burst", "Stationary", SubResource( 33 ), "Burst", "SpeedingUp", SubResource( 34 ), "Spray", "SpeedingUp", SubResource( 35 ), "Spray", "Decay", SubResource( 36 ), "Birth", "Stationary", SubResource( 37 ), "Stationary", "SpeedingUp", SubResource( 38 ), "Spray", "Stationary", SubResource( 39 ), "Birth", "SprayStrt", SubResource( 40 ) ]
 start_node = "Birth"
-graph_offset = Vector2( 36, -5.56612 )
+graph_offset = Vector2( 36, -51.1071 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
 [node name="Fire" type="KinematicBody2D"]
 collision_layer = 16
-collision_mask = 0
+collision_mask = 1024
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
@@ -556,3 +558,5 @@ tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 12 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

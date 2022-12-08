@@ -33,7 +33,7 @@ func _physics_process(delta):
 	
 	if Input.get_action_strength("interact2")> 0:
 		var fire = load("res://Scene/Phenomenon/Fire.tscn").instance()
-		fire.position = dir*60
+		fire.position = dir*30 +  position
 		get_tree().get_root().get_node("World/TranientEntities").add_child(fire)
 	
 	if Input.get_action_strength("interact3")> 0:

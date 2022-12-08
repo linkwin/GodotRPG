@@ -37,6 +37,7 @@ tile_data = PoolIntArray( -11141350, 0, 0, -11141349, 0, 0, -11141348, 0, 0, -11
 [node name="FeaturesTM" type="TileMap" parent="MainTM"]
 position = Vector2( -40, -86 )
 tile_set = ExtResource( 2 )
+collision_layer = 1025
 format = 1
 tile_data = PoolIntArray( -196613, 3, 0, -131072, 0, 0, -1, 1610612736, 0, -65536, 1610612736, 0, 131069, 3, 0, 131070, 1, 0 )
 
