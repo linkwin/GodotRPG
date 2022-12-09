@@ -14,7 +14,7 @@ script = ExtResource( 9 )
 script = ExtResource( 6 )
 
 [node name="Player" parent="TranientEntities" instance=ExtResource( 2 )]
-position = Vector2( -143, -75 )
+position = Vector2( 570, 60 )
 rotation = 0.0
 z_as_relative = false
 script = ExtResource( 5 )

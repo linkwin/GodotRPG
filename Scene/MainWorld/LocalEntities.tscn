@@ -10,6 +10,11 @@
 
 [node name="Building1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 399, -60 )
+scene_ref = "res://Scene/Objects/House1.tscn"
+
+[node name="Building2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 779, -60 )
+scene_ref = "res://Scene/Objects/House2.tscn"
 
 [node name="MainTM" type="TileMap" parent="."]
 show_behind_parent = true
@@ -37,6 +42,11 @@ tile_data = PoolIntArray( -196613, 3, 0, -131072, 0, 0, -1, 1610612736, 0, -6553
 position = Vector2( 399, -20 )
 script = ExtResource( 1 )
 prev_scene = "House1"
+
+[node name="PlayerStart2" type="Node2D" parent="." groups=["player_start"]]
+position = Vector2( 779, -20 )
+script = ExtResource( 1 )
+prev_scene = "House2"
 
 [node name="Tree" parent="." instance=ExtResource( 4 )]
 position = Vector2( -411, -91 )

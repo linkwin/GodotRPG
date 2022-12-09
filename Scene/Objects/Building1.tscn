@@ -478,6 +478,7 @@ extents = Vector2( 16, 22 )
 
 [node name="Building1" type="YSort"]
 position = Vector2( 0, -40 )
+script = ExtResource( 3 )
 
 [node name="Walls" type="TileMap" parent="."]
 position = Vector2( -144, 40 )
@@ -500,8 +501,6 @@ tile_data = PoolIntArray( -327682, -1610612732, 0, -327681, -1610612732, 0, -393
 [node name="Door" type="Area2D" parent="."]
 collision_layer = 12
 collision_mask = 12
-script = ExtResource( 3 )
-scene_ref = "res://Scene/Objects/House1.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2( 0, -2 )
@@ -512,10 +511,4 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 0, 40 )
-
-[connection signal="area_entered" from="Door" to="." method="_on_Door_area_entered"]
-[connection signal="area_entered" from="Door" to="Door" method="_on_Door_area_entered"]
-[connection signal="area_shape_entered" from="Door" to="." method="_on_Door_area_shape_entered"]
-[connection signal="body_entered" from="Door" to="Door" method="_on_Door_body_entered"]
+[connection signal="body_entered" from="Door" to="." method="_on_Door_body_entered"]
