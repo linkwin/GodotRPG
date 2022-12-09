@@ -478,6 +478,7 @@ extents = Vector2( 16, 22 )
 
 [node name="Building1" type="YSort"]
 position = Vector2( 0, -40 )
+scale = Vector2( 0.8, 0.8 )
 
 [node name="Walls" type="TileMap" parent="."]
 position = Vector2( -144, 40 )

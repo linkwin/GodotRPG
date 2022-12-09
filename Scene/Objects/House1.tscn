@@ -36,7 +36,6 @@ extents = Vector2( 184.75, 18 )
 extents = Vector2( 191.5, 13.75 )
 
 [node name="House1" type="YSort"]
-scale = Vector2( 2, 2 )
 z_index = -1
 
 [node name="Floor" type="TileMap" parent="."]

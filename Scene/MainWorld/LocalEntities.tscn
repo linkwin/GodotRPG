@@ -13,6 +13,7 @@ position = Vector2( 399, -60 )
 [node name="MainTM" type="TileMap" parent="."]
 show_behind_parent = true
 position = Vector2( 0, 52 )
+scale = Vector2( 0.5, 0.5 )
 z_index = -9
 z_as_relative = false
 tile_set = ExtResource( 3 )
