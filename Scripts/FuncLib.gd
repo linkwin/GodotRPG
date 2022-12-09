@@ -19,7 +19,7 @@ func switch_scene(new_scene_path):
 		new_scene = load(new_scene_path).instance()
 	var player = world.get_node("TranientEntities/Player")
 	var current_scene = world.get_node(current_scene_name)
-	if (cached_scenes.find(current_scene) == -1):
+	if (!cached_scenes.has(current_scene)):
 		cached_scenes.append(current_scene)
 	world.remove_child(current_scene)
 	world.add_child(new_scene)
