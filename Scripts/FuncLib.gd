@@ -20,7 +20,9 @@ func switch_scene(new_scene_path):
 	cached_scenes.append(current_scene)
 	world.remove_child(current_scene)
 	world.add_child(new_scene)
-	player.position = world.get_node(new_scene.name + "/PlayerStart").position
+	for node in new_scene.get_tree().get_nodes_in_group("player_start"):
+		if node.get_prev_scene().find(current_scene_name) >= 0:
+			player.position = node.position
 	current_scene_name = new_scene.name
 	
 func save_node(node):

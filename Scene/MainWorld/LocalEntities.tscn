@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Scripts/player_start.gd" type="Script" id=1]
 [ext_resource path="res://Tilesets/CollisionTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://Tilesets/MainWorldBaseTS.tres" type="TileSet" id=3]
 [ext_resource path="res://Scene/Objects/Tree.tscn" type="PackedScene" id=4]
@@ -32,8 +33,10 @@ collision_layer = 1025
 format = 1
 tile_data = PoolIntArray( -196613, 3, 0, -131072, 0, 0, -1, 1610612736, 0, -65536, 1610612736, 0, 131069, 3, 0, 131070, 1, 0 )
 
-[node name="PlayerStart" type="Node2D" parent="."]
-position = Vector2( 400, -19 )
+[node name="PlayerStart" type="Node2D" parent="." groups=["player_start"]]
+position = Vector2( 399, -20 )
+script = ExtResource( 1 )
+prev_scene = "House1"
 
 [node name="Tree" parent="." instance=ExtResource( 4 )]
 position = Vector2( -411, -91 )

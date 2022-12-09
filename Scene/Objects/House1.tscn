@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Tilesets/House1.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/SceneSwitch.gd" type="Script" id=2]
 [ext_resource path="res://Assets/TX Props.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/player_start.gd" type="Script" id=4]
 
 [sub_resource type="TileSet" id=1]
 0/name = "TX Props.png 0"
@@ -89,6 +90,8 @@ shape = SubResource( 5 )
 position = Vector2( -24, 37.75 )
 shape = SubResource( 6 )
 
-[node name="PlayerStart" type="Node2D" parent="."]
+[node name="PlayerStart" type="Node2D" parent="." groups=["player_start"]]
+script = ExtResource( 4 )
+prev_scene = "LocalEntities"
 
 [connection signal="body_entered" from="OutDoor1" to="OutDoor1" method="_on_Door_body_entered"]
