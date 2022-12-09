@@ -36,7 +36,7 @@ extents = Vector2( 184.75, 18 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 191.5, 13.75 )
 
-[node name="House1" type="YSort"]
+[node name="House2" type="YSort"]
 scale = Vector2( 2, 2 )
 z_index = -1
 

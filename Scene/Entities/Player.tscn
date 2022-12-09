@@ -494,7 +494,7 @@ graph_offset = Vector2( -639.479, -140.381 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=53]
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="KinematicBody2D" type="KinematicBody2D" groups=["Stuff"]]
 rotation = -6.28319
 collision_layer = 15
 collision_mask = 15
@@ -505,12 +505,18 @@ position = Vector2( 0.000116348, 0.750053 )
 rotation = 1.5708
 z_as_relative = false
 shape = SubResource( 21 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 4.95911e-05, -11 )
 texture = ExtResource( 13 )
 vframes = 28
 frame = 5
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
@@ -539,3 +545,6 @@ active = true
 parameters/playback = SubResource( 53 )
 parameters/Idle/blend_position = Vector2( 0, 1 )
 parameters/Run/blend_position = Vector2( 0, 1 )
+
+[node name="mouth" type="Node2D" parent="."]
+position = Vector2( 7.14621e-05, -16 )
