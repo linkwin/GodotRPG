@@ -16,13 +16,11 @@ func switch_scene(new_scene_path):
 			new_scene = scene
 	if new_scene == null:
 		print("Loading scene: " + str(new_scene_path) + "\n")
-		var new_scene_class = load(new_scene_path)
-		print(new_scene_class)
-		new_scene = new_scene_class.instance()
-	print(new_scene)
+		new_scene = load(new_scene_path).instance()
 	var player = world.get_node("TranientEntities/Player")
 	var current_scene = world.get_node(current_scene_name)
-	cached_scenes.append(current_scene)
+	if (cached_scenes.find(current_scene) == -1):
+		cached_scenes.append(current_scene)
 	world.remove_child(current_scene)
 	world.add_child(new_scene)
 	for node in new_scene.get_tree().get_nodes_in_group("player_start"):
