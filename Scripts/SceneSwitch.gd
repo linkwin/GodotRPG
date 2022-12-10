@@ -1,6 +1,4 @@
 extends Node
 
-export(String, FILE) var scene_ref
-
-func _on_Door_body_entered(body):
-	FuncLib.switch_scene(scene_ref)
+func _on_door_entered(target_scene_ref, door_name, target_door_name):
+	FuncLib.switch_scene(target_scene_ref, door_name, target_door_name)

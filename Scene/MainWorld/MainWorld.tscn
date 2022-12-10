@@ -10,6 +10,7 @@
 [node name="World" type="YSort"]
 z_as_relative = false
 script = ExtResource( 9 )
+enable_loading = false
 
 [node name="TranientEntities" type="YSort" parent="."]
 script = ExtResource( 6 )

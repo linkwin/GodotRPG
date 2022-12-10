@@ -7,9 +7,8 @@
 [node name="TranientEntities" type="YSort"]
 script = ExtResource( 2 )
 
-[node name="Player" type="KinematicBody2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( -44.3725, 20.1289 )
-scale = Vector2( 2, 2 )
+[node name="Player" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -69.5441, -202.496 )
 z_as_relative = false
 collision_layer = 15
 collision_mask = 15

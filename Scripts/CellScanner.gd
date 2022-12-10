@@ -34,14 +34,15 @@ func check_cell(cell_position):
 	# Get scene instance to send for saving
 	var scene_instance = get_tree().get_current_scene().get_node("LocalEntities").get_node(hits[0].collider.name)
 
-	grid.save_cell(cell_position, scene_instance)
+	#grid.save_cell(cell_position, scene_instance)
 	
 	#debug
 	print("Number of objects hit: " + str(hits.size()))
 	print(hits)
 
 func _on_Area2D_placeable_moved(from):
-	grid.grid_dict.erase(from)
+	
+	#grid.grid_dict.erase(from)
 
 func _on_Area2D_placeable_placed(to):
 	check_cell(to)

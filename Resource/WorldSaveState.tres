@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource( 1 )
-world_nodes_save = [ "res://db/TranientEntities.tscn", "res://db/LocalEntities.tscn" ]
+world_nodes_save = [ "res://db/TranientEntities.tscn", "res://db/House1.tscn" ]
 save_path = "res://Resource/WorldSaveState.tres"

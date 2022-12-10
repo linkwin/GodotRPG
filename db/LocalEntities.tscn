@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Tilesets/CollisionTiles.tres" type="TileSet" id=1]
-[ext_resource path="res://Scene/MainWorld/new_tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://Scripts/SnapToGrid.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/SetChildrenOwned.gd" type="Script" id=4]
+[ext_resource path="res://Tilesets/MainWorldBaseTS.tres" type="TileSet" id=1]
+[ext_resource path="res://Tilesets/CollisionTiles.tres" type="TileSet" id=2]
+[ext_resource path="res://Scene/Objects/Tree.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/SceneSwitch.gd" type="Script" id=4]
 [ext_resource path="res://Scene/Objects/Building1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scene/Placeable/Placeable.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scene/Objects/Tree.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/player_start.gd" type="Script" id=6]
 
 [sub_resource type="GDScript" id=7]
 script/source = "extends KinematicBody2D
@@ -34,18 +33,17 @@ func _process(delta):
 var timer
 
 func _on_Interaction_Base_body_entered(body):
-	print(body.name)
 	var bodytype = body.name
-	if bodytype.get_slice(\"@\", 1) == \"Fire\":
-		state = \"Burning\"
-		timer = Timer.new()
-	if state == \"Burning\":
-		print(\"TimerSTART\")
-		timer.connect(\"timeout\",self,\"do_this\")
-		timer.wait_time = 5
-		timer.one_shot = true
-		add_child(timer)
-		timer.start()
+	if state == \"Live\":
+		if bodytype.get_slice(\"@\", 1) == \"Fire\":
+			state = \"Burning\"
+			timer = Timer.new()
+		if state == \"Burning\":
+			timer.connect(\"timeout\",self,\"do_this\")
+			timer.wait_time = 5
+			timer.one_shot = true
+			add_child(timer)
+			timer.start()
 
 func do_this():
 	if state == \"Burning\":
@@ -53,29 +51,26 @@ func do_this():
 "
 
 [node name="LocalEntities" type="YSort"]
-script = ExtResource( 4 )
-
-[node name="Tree" type="KinematicBody2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( -411, -91 )
-script = SubResource( 7 )
-
-[node name="Tree2" type="KinematicBody2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( -457, 287 )
-script = SubResource( 7 )
-
-[node name="Tree3" type="KinematicBody2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 728, 359 )
-script = SubResource( 7 )
+position = Vector2( 0, 10 )
+script = ExtResource( 6 )
+prev_scene = ""
 
 [node name="Building1" type="YSort" parent="." instance=ExtResource( 5 )]
 position = Vector2( 399, -60 )
+script = ExtResource( 4 )
+scene_ref = "res://Scene/Objects/House1.tscn"
+
+[node name="Building2" type="YSort" parent="." instance=ExtResource( 5 )]
+position = Vector2( 779, -60 )
+script = ExtResource( 4 )
+scene_ref = "res://Scene/Objects/House2.tscn"
 
 [node name="MainTM" type="TileMap" parent="."]
 show_behind_parent = true
 position = Vector2( 0, 52 )
 z_index = -9
 z_as_relative = false
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 show_collision = true
@@ -87,15 +82,166 @@ tile_data = PoolIntArray( -11141350, 0, 0, -11141349, 0, 0, -11141348, 0, 0, -11
 
 [node name="FeaturesTM" type="TileMap" parent="MainTM"]
 position = Vector2( -40, -86 )
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
+collision_layer = 1025
 format = 1
 tile_data = PoolIntArray( -196613, 3, 0, -131072, 0, 0, -1, 1610612736, 0, -65536, 1610612736, 0, 131069, 3, 0, 131070, 1, 0 )
 
-[node name="PlayerStart" type="Node2D" parent="."]
-position = Vector2( 400, -19 )
+[node name="PlayerStart" type="Node2D" parent="." groups=["player_start"]]
+position = Vector2( 399, -20 )
+script = ExtResource( 6 )
+prev_scene = "House1"
 
-[node name="Area2D" type="Area2D" parent="." instance=ExtResource( 6 )]
-position = Vector2( 96, 96 )
-scale = Vector2( 0.5, 0.5 )
-collision_layer = 2
-script = ExtResource( 3 )
+[node name="House2BackDoor" type="Node2D" parent="." groups=["player_start"]]
+position = Vector2( 778, -223 )
+script = ExtResource( 6 )
+prev_scene = "House1"
+
+[node name="PlayerStart2" type="Node2D" parent="." groups=["player_start"]]
+position = Vector2( 779, -20 )
+script = ExtResource( 6 )
+prev_scene = "House2"
+
+[node name="Tree" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -411, -91 )
+script = SubResource( 7 )
+
+[node name="Tree2" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -457, 287 )
+script = SubResource( 7 )
+
+[node name="Tree3" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 728, 359 )
+script = SubResource( 7 )
+
+[node name="Tree4" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -638, 68 )
+script = SubResource( 7 )
+
+[node name="Tree5" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -608, -92 )
+script = SubResource( 7 )
+
+[node name="Tree6" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 340, -230 )
+script = SubResource( 7 )
+
+[node name="Tree7" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -287, 302 )
+script = SubResource( 7 )
+
+[node name="Tree8" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -712, 222 )
+script = SubResource( 7 )
+
+[node name="Tree9" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -58, -234 )
+script = SubResource( 7 )
+
+[node name="Tree10" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -617, 381 )
+script = SubResource( 7 )
+
+[node name="Tree11" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -857, 77 )
+script = SubResource( 7 )
+
+[node name="Tree12" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -166, 533 )
+script = SubResource( 7 )
+
+[node name="Tree13" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 347, 218 )
+script = SubResource( 7 )
+
+[node name="Tree14" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -609, 920 )
+script = SubResource( 7 )
+
+[node name="Tree15" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -2941, -196 )
+script = SubResource( 7 )
+
+[node name="Tree16" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -3448, -274 )
+script = SubResource( 7 )
+
+[node name="Tree17" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -3234, 82 )
+script = SubResource( 7 )
+
+[node name="Tree18" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -3284, -167 )
+script = SubResource( 7 )
+
+[node name="Tree19" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -3091, -352 )
+script = SubResource( 7 )
+
+[node name="Tree20" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -3041, -10 )
+script = SubResource( 7 )
+
+[node name="Tree21" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 3330, -1699 )
+script = SubResource( 7 )
+
+[node name="Tree22" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -1808, -1493 )
+script = SubResource( 7 )
+
+[node name="Tree23" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -1231, -1379 )
+script = SubResource( 7 )
+
+[node name="Tree24" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -1708, -1685 )
+script = SubResource( 7 )
+
+[node name="Tree25" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -1580, -1500 )
+script = SubResource( 7 )
+
+[node name="Tree26" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -1573, -1257 )
+script = SubResource( 7 )
+
+[node name="Tree27" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 765, 1258 )
+script = SubResource( 7 )
+
+[node name="Tree28" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 465, 1045 )
+script = SubResource( 7 )
+
+[node name="Tree29" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 686, 1565 )
+script = SubResource( 7 )
+
+[node name="Tree30" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( -625, 1422 )
+script = SubResource( 7 )
+
+[node name="Tree31" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 2817, -367 )
+script = SubResource( 7 )
+
+[node name="Tree32" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 2197, 82 )
+script = SubResource( 7 )
+
+[node name="Tree33" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 1876, 40 )
+script = SubResource( 7 )
+
+[node name="Tree34" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 1912, 275 )
+script = SubResource( 7 )
+
+[node name="Tree35" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 2048, 161 )
+script = SubResource( 7 )
+
+[node name="Tree36" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
+position = Vector2( 2005, -32 )
+script = SubResource( 7 )
