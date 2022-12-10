@@ -7,10 +7,9 @@ export var enable_loading = true
 func _ready():
 	FuncLib.set_children_owned(self)
 	if (enable_loading):
-		#get_node("/root/FuncLib").load_world(world_save_state.get_world_save())
+#		FuncLib.load_world_save_state()
 		world_save_state.load_all_saved_scenes()
 		load_entities()
-		#get_node("/root/FuncLib").load_world_nodes(world_save_state.world_nodes_save)
 		
 func load_entities():
 	remove_child($LocalEntities)

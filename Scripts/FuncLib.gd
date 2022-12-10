@@ -7,6 +7,9 @@ var current_scene_name = "LocalEntities"
 
 onready var world = get_tree().get_root().get_node("World")
 
+func cache_current_scene():
+	world_save.cache_scene(world.get_node(current_scene_name))
+
 func set_children_owned_recursive(parent):
 	if parent.get_child_count() > 0:
 		for node in parent.get_children():
@@ -54,43 +57,11 @@ func save_node(node):
 	scene_pack.pack(node)
 	ResourceSaver.save(save_file, scene_pack)
 	
-func load_saved_scene():
-	var scene_instance = load(save_file).instance()
-	get_tree().get_root().remove_child(world)
-	get_tree().get_root().add_child(scene_instance)
-	#world.remove_child(world.get_node(scene_instance.name))
-	#world.get_node(scene_instance.name).queue_free()
-	#world.add_child(load(save_file).instance())
+func load_world_save_state():
+	#get_tree().get_root().remove_child(world)
+	world.queue_free()
+	get_tree().get_root().add_child(world_save.get_world_state_instance())
 	
-func load_world_nodes(world_nodes_save):
-	if (world_nodes_save != null):
-		print("loading saved world...")
-		var root = get_tree().get_root()
-		for node in world.get_children():
-			world.remove_child(node)
-		for node in world_nodes_save:
-			print(node)
-			world.add_child(node.instance())
-		#root.remove_child(world)
-		#world.queue_free()
-		#root.add_child(world_save_instance)
-		world = get_tree().get_root().get_node("World")
-	
-func load_world(world_save):
-	if (world_save != null):
-		print("loading saved world...")
-		var world_save_instance = world_save.instance()
-		var root = get_tree().get_root()
-		for node in world.get_children():
-			world.remove_child(node)
-		for node in world_save_instance.get_children():
-			print(node)
-			world.add_child(node)
-		#root.remove_child(world)
-		#world.queue_free()
-		#root.add_child(world_save_instance)
-		world = get_tree().get_root().get_node("World")
-
 func show_one_child(parent, child):
 	var parent_node = parent
 	for node in parent_node.get_children():

@@ -1,6 +1,9 @@
 extends Resource
 class_name WorldSave
 
+export(PackedScene) var world_state
+export(String, FILE) var world_state_save_path = "res://db/WorldSaveState.tscn"
+
 export(Array) var world_nodes_save
 export var save_path = "res://Resource/WorldSaveState.tres"
 
@@ -8,9 +11,18 @@ var world_entities = []
 
 var cached_scenes = []
 
+func get_world_state_instance():
+	return load(world_state_save_path).instance()
+
 func save_world(world_scene):
 	print("Attempting to save world")
 	world_nodes_save = []
+	FuncLib.cache_current_scene()
+	
+	var world_save = PackedScene.new()
+	world_save.pack(world_scene)
+	world_state = world_save
+	ResourceSaver.save(world_state_save_path, world_save)
 	
 	for node in cached_scenes:
 		var scene_pack = PackedScene.new()
