@@ -6,6 +6,15 @@ onready var LiveTree 	=  $Tree1
 onready var BurntTree 	=  $BurntTree1
 onready var BurningTree =  $BurningTree
 
+func _get_property_list():
+	return [
+		{
+			"name": state,
+			"type": TYPE_STRING,
+			"usage": PROPERTY_USAGE_STORAGE
+		}
+	]
+
 func _process(delta):
 	if state == "Live":
 		LiveTree.show()

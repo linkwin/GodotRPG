@@ -1,12 +1,18 @@
 extends Node
 var save_file = "res://db/savedscene.tscn"
 
+export(Resource) var world_save = preload("res://Resource/WorldSaveState.tres")
 
 var current_scene_name = "LocalEntities"
 
-var cached_scenes = []
-
 onready var world = get_tree().get_root().get_node("World")
+
+func set_children_owned_recursive(parent):
+	if parent.get_child_count() > 0:
+		for node in parent.get_children():
+			set_children_owned_recursive(node)
+	else:
+		parent.set_owner(parent.get_parent())
 
 func switch_scene(new_scene_path, door_name, target_door_name):
 	var new_scene = null
@@ -14,18 +20,8 @@ func switch_scene(new_scene_path, door_name, target_door_name):
 	var current_scene = world.get_node(current_scene_name)
 	world.get_node("TranientEntities/Player").remove_child(player)
 	
-	# Fetch cached scene
-	for scene in cached_scenes:
-		if new_scene_path.ends_with(scene.name + ".tscn"):
-			print("Fetching cached scene: " + str(scene) + "\n")
-			new_scene = scene
-	# Cache scene if not cached
-	if (!cached_scenes.has(current_scene)):
-		cached_scenes.append(current_scene)
-	# Load scene from disk if not cached
-	if new_scene == null:
-		print("Loading scene: " + str(new_scene_path) + "\n")
-		new_scene = load(new_scene_path).instance()
+	new_scene = world_save.fetch_scene(new_scene_path)
+	world_save.cache_scene(current_scene)
 
 	# Do scene switch
 	world.remove_child(current_scene)

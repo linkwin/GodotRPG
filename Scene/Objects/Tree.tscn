@@ -5,13 +5,28 @@
 [ext_resource path="res://Assets/Natural Objects/BurningTree.png" type="Texture" id=3]
 
 [sub_resource type="GDScript" id=7]
-script/source = "extends KinematicBody2D
+script/source = "tool
+extends KinematicBody2D
 
 var state = \"Live\"
 
 onready var LiveTree 	=  $Tree1
 onready var BurntTree 	=  $BurntTree1
 onready var BurningTree =  $BurningTree
+
+func _get_property_list():
+	# But in game, Godot will see this
+	return [
+		{
+			\"name\": \"state\",
+			\"usage\": PROPERTY_USAGE_STORAGE,
+			\"type\": TYPE_STRING,
+		}
+	]
+
+func _ready():
+	print(state)
+	FuncLib.set_children_owned(self)
 
 func _process(delta):
 	if state == \"Live\":

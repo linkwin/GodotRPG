@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/player_start.gd" type="Script" id=1]
 [ext_resource path="res://Tilesets/CollisionTiles.tres" type="TileSet" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://Scene/Objects/Building1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scene/Objects/Door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scene/Objects/PlayerStart.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/save_test.gd" type="Script" id=8]
 
 [node name="LocalEntities" type="YSort"]
-script = ExtResource( 1 )
+script = ExtResource( 8 )
 
 [node name="Building1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 401, -63 )
