@@ -11,3 +11,7 @@ func _input(event):
 		func_lib.show_one_child($".", $three)
 	if (event.is_action_pressed("pause")):
 		func_lib.hide_all_children($".")
+
+
+
+

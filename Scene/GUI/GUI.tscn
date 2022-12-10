@@ -2,29 +2,61 @@
 
 [ext_resource path="res://Scene/GUI/GUI.gd" type="Script" id=1]
 
-[node name="GUI" type="Control"]
+[node name="GUI" type="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 20.0
 script = ExtResource( 1 )
 
-[node name="one" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 4.0
+margin_bottom = 14.0
+
+[node name="Bars" type="VBoxContainer" parent="HBoxContainer"]
+margin_bottom = 14.0
+
+[node name="Bar" type="HBoxContainer" parent="HBoxContainer/Bars"]
+margin_bottom = 14.0
+
+[node name="Count" type="MarginContainer" parent="HBoxContainer/Bars/Bar"]
+margin_bottom = 14.0
+
+[node name="Background" type="NinePatchRect" parent="HBoxContainer/Bars/Bar/Count"]
+margin_bottom = 14.0
+
+[node name="Title" type="TextureRect" parent="HBoxContainer/Bars/Bar/Count"]
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="HBoxContainer/Bars/Bar/Count"]
+margin_bottom = 14.0
+
+[node name="Counters" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 14.0
+
+[node name="Numeric Inputs" type="Control" parent="."]
+margin_right = 4.0
+margin_bottom = 14.0
+
+[node name="one" type="Label" parent="Numeric Inputs"]
 visible = false
-margin_left = 35.0
-margin_top = 11.0
-margin_right = 123.0
-margin_bottom = 54.0
+margin_top = -7.0
+margin_right = 24.0
+margin_bottom = 7.0
 text = "one"
 
-[node name="two" type="Label" parent="."]
+[node name="two" type="Label" parent="Numeric Inputs"]
 visible = false
-margin_left = -138.0
-margin_top = 30.0
-margin_right = -15.0
-margin_bottom = 84.0
+margin_top = -7.0
+margin_right = 23.0
+margin_bottom = 7.0
 text = "two"
 
-[node name="three" type="Label" parent="."]
+[node name="three" type="Label" parent="Numeric Inputs"]
 visible = false
-margin_left = -17.0
-margin_top = 92.0
-margin_right = 87.0
-margin_bottom = 144.0
+margin_top = -7.0
+margin_right = 34.0
+margin_bottom = 7.0
 text = "three"
