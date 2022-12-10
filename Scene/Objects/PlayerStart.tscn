@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/player_start.gd" type="Script" id=1]
+
+[node name="PlayerStart" type="Node2D" groups=["player_start"]]
+position = Vector2( 1, -204.167 )
+scale = Vector2( 1, 8.33333 )
+script = ExtResource( 1 )
+prev_scene = "LocalEntities"

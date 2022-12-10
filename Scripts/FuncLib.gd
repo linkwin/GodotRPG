@@ -8,25 +8,48 @@ var cached_scenes = []
 
 onready var world = get_tree().get_root().get_node("World")
 
-func switch_scene(new_scene_path):
+func switch_scene(new_scene_path, door_name, target_door_name):
 	var new_scene = null
+	var player = world.get_node("TranientEntities/Player")
+	var current_scene = world.get_node(current_scene_name)
+	world.get_node("TranientEntities/Player").remove_child(player)
+	
+	# Fetch cached scene
 	for scene in cached_scenes:
-		if new_scene_path.find(scene.name) >= 0:
+		if new_scene_path.ends_with(scene.name + ".tscn"):
 			print("Fetching cached scene: " + str(scene) + "\n")
 			new_scene = scene
+	# Cache scene if not cached
+	if (!cached_scenes.has(current_scene)):
+		cached_scenes.append(current_scene)
+	# Load scene from disk if not cached
 	if new_scene == null:
 		print("Loading scene: " + str(new_scene_path) + "\n")
 		new_scene = load(new_scene_path).instance()
-	var player = world.get_node("TranientEntities/Player")
-	var current_scene = world.get_node(current_scene_name)
-	if (!cached_scenes.has(current_scene)):
-		cached_scenes.append(current_scene)
+
+	# Do scene switch
 	world.remove_child(current_scene)
 	world.add_child(new_scene)
+	
+	# Determine player start position
+	var player_starts = []
+	var player_start_node
+	var prev_scene_name = current_scene_name
 	for node in new_scene.get_tree().get_nodes_in_group("player_start"):
-		if node.get_prev_scene().find(current_scene_name) >= 0:
-			player.position = node.position
+		if prev_scene_name == node.prev_scene:
+			player_start_node = node
+			player_starts.append(node)
+	if player_starts.size() > 1:
+		for node in player_starts:
+			if target_door_name.empty():
+				if door_name == node.door_name:
+					player_start_node = node
+			else:
+				if target_door_name == node.door_name:
+					player_start_node = node
+	player.position = player_start_node.global_position
 	current_scene_name = new_scene.name
+	world.get_node("TranientEntities").add_child(player)
 	
 func save_node(node):
 	print("saving " + str(node.name) + " node...")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scene/MainWorld/YSortRoot.gd" type="Script" id=1]
+[ext_resource path="res://Scene/MainWorld/MainWorld.gd" type="Script" id=2]
+[ext_resource path="res://Scene/Placeable/Placeable.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scene/MainWorld/LocalEntities.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Resource/WorldSaveState.tres" type="Resource" id=7]
+
+[node name="World2" type="YSort"]
+z_as_relative = false
+script = ExtResource( 2 )
+world_save_state = ExtResource( 7 )
+
+[node name="TranientEntities" type="YSort" parent="."]
+script = ExtResource( 1 )
+
+[node name="LocalEntities" parent="." instance=ExtResource( 6 )]
+
+[node name="Area2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( -256, -64 )
+collision_layer = 2

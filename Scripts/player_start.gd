@@ -1,6 +1,8 @@
+tool
 extends Node2D
 
-export var prev_scene = "" setget ,get_prev_scene
+export var prev_scene = ""
 
-func get_prev_scene():
-	return prev_scene
+export var door_name = ""
+
+export var target_door_name = ""

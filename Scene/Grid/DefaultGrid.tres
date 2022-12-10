@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scene/Grid/Grid.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[resource]
+script = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+grid_dict = {
+Vector2( -8, -1 ): SubResource( 1 )
+}
