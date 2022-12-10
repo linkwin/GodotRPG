@@ -476,6 +476,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 [node name="Building1" type="YSort"]
 position = Vector2( 0, -40 )
 scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 3 )
 
 [node name="Walls" type="TileMap" parent="."]
 position = Vector2( -144, 40 )
