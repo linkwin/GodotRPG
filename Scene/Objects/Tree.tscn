@@ -113,7 +113,7 @@ position = Vector2( 3, -93 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 5 )
 animation = "BurningTree"
-frame = 1
+frame = 2
 playing = true
 __meta__ = {
 "_edit_lock_": true
