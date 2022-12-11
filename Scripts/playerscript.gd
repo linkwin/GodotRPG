@@ -16,7 +16,7 @@ var dir = Vector2(0,1)
 var health = 100
 var magic = 100
 var magic_use_rate = 0.001
-
+var magic_count = 0
 
 
 func _physics_process(delta):
@@ -44,11 +44,13 @@ func _physics_process(delta):
 		if Input.get_action_strength("interact2")> 0:
 			var fire = load("res://Scene/Phenomenon/Fire.tscn").instance()
 			fire.position = dir*30 +  position
+			fire.player_made = true
 			get_tree().get_root().get_node("World/TranientEntities").add_child(fire)
 		
 		if not hasfire and Input.get_action_strength("interact3")> 0:
 			var firebreath = load("res://Scene/Phenomenon/Fire.tscn").instance()
 			hasfire = true
+			firebreath.player_made = true
 			get_tree().get_root().get_node("World/TranientEntities/Player/mouth").add_child(firebreath)
 			firebreath.rotation_degrees = 360*atan2(dir.y,dir.x)/(2*PI)+180
 			
@@ -57,3 +59,10 @@ func _physics_process(delta):
 
 
 
+
+func _on_Area2D_body_entered(body):
+	var bodytype = body.name
+	if bodytype.get_slice("@", 1) == "Fire":
+		if body.home != self:
+			health -= 0.5
+			print('Hot')
