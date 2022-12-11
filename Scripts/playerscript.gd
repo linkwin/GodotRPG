@@ -13,6 +13,8 @@ var magicstate = "Fire"
 
 var dir = Vector2(0,1)
 
+
+
 func _physics_process(delta):
 	var input_vec = Vector2.ZERO
 	input_vec.x = Input.get_action_strength("right") - Input.get_action_strength("left")
