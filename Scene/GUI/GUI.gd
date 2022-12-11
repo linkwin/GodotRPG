@@ -7,6 +7,7 @@ onready var magic_gauge = $HBoxContainer/Bars/MagicGauge
 
 func _process(delta):
 	health_gauge.value = home.health
+	magic_gauge.value = home.magic
 
 func _input(event):
 	if (event.is_action_pressed("one")):

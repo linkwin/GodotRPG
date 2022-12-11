@@ -18,10 +18,9 @@ const friction = 800
 
 
 
-
-
 func _physics_process(delta):
 	if player_made:
+		var player = get_tree().get_root().get_node("World/TranientEntities/Player")
 		if home.name == "World":
 			var input_vec = Vector2.ZERO
 			if Input.get_action_strength("interact1") != 0:
@@ -79,18 +78,19 @@ func _physics_process(delta):
 				timer.one_shot = true
 				add_child(timer)
 				timer.start()
-		
-					
-		
-	
-	
 
 func do_this():
+	if player_made == true:
+		var player = get_tree().get_root().get_node("World/TranientEntities/Player")
+		if home.name == "World":
+				player.magic_count = max(player.magic_count-1, 0)
+		if home.name == "Player":
+			home.hasfire = false
+			home.magic_count = max(home.magic_count-1, 0)
 	if vel.length() < 0.1:
 		self.get_parent().remove_child(self)
 		self.queue_free()
-	if home.name == "Player":
-		home.hasfire = false 
+
 		
 	
 		
