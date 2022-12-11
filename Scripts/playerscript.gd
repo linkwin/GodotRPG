@@ -13,6 +13,10 @@ var magicstate = "Fire"
 
 var dir = Vector2(0,1)
 
+var health = 100
+var magic = 100
+var magic_use_rate = 0.001
+
 
 
 func _physics_process(delta):

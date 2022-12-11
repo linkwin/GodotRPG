@@ -569,7 +569,7 @@ margin_left = -258.995
 margin_top = -1215.0
 margin_right = 137.005
 margin_bottom = -1105.0
-rect_scale = Vector2( 0.4, 0.2 )
+rect_scale = Vector2( 0.28, 0.18 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
