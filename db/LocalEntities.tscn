@@ -186,52 +186,52 @@ tile_data = PoolIntArray( -196613, 3, 0, -131072, 0, 0, -1, 1610612736, 0, -6553
 [node name="Tree" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( -411, -91 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree2" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( -457, 287 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree3" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( 728, 359 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree4" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( -638, 68 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree5" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( -608, -92 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree6" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( 83, -337 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree7" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( -287, 302 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree8" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( -712, 222 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree9" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( -58, -234 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree10" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( -617, 381 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree11" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( -857, 77 )
@@ -241,7 +241,7 @@ state = "Live"
 [node name="Tree12" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( -166, 533 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree13" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 3 )]
 position = Vector2( 347, 218 )
@@ -364,9 +364,19 @@ script = SubResource( 7 )
 state = "Live"
 
 [node name="Area2D" type="Area2D" parent="." instance=ExtResource( 12 )]
-position = Vector2( 192, 32 )
+position = Vector2( 352, 32 )
 scale = Vector2( 0.5, 0.5 )
 collision_layer = 2
+script = ExtResource( 9 )
+
+[node name="Placeable" type="Area2D" parent="." instance=ExtResource( 12 )]
+position = Vector2( 320, 32 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+
+[node name="@Placeable@2615" type="Area2D" parent="." instance=ExtResource( 12 )]
+position = Vector2( 320, 32 )
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 9 )
 
 [connection signal="body_entered" from="Building1/Portal1" to="Building1/Portal1" method="_on_Door_body_entered"]
