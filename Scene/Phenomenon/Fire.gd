@@ -32,7 +32,7 @@ func _physics_process(delta):
 			var err2 = 0.1*(2*randf()-1)
 			vel = vel + Vector2(err1,err2)
 			
-			if input_vec != Vector2.ZERO:
+			if input_vec != Vector2.ZERO and player.magic > 0:
 				vel = vel.move_toward(speed*input_vec,delta*acc)
 				"""look_at(-input_vec) """
 				var veldir = vel.normalized()
@@ -52,7 +52,7 @@ func _physics_process(delta):
 			
 			var timer
 			
-			if vel.length() < 0.1 and Input.get_action_strength("interact1") == 0:
+			if vel.length() < 0.1 and (Input.get_action_strength("interact1") == 0 or player.magic < 1):
 				animationstate.travel("Decay")
 				timer = Timer.new()
 				timer.connect("timeout",self,"do_this")
@@ -70,7 +70,7 @@ func _physics_process(delta):
 			
 			var timer
 			
-			if Input.get_action_strength("interact3") == 0:
+			if Input.get_action_strength("interact3") == 0 or player.magic < 1:
 				animationstate.travel("Decay")
 				timer = Timer.new()
 				timer.connect("timeout",self,"do_this")
@@ -80,14 +80,14 @@ func _physics_process(delta):
 				timer.start()
 
 func do_this():
-	if player_made == true:
-		var player = get_tree().get_root().get_node("World/TranientEntities/Player")
-		if home.name == "World":
-				player.magic_count = max(player.magic_count-1, 0)
-		if home.name == "Player":
-			home.hasfire = false
-			home.magic_count = max(home.magic_count-1, 0)
-	if vel.length() < 0.1:
+	var player = get_tree().get_root().get_node("World/TranientEntities/Player")
+	if vel.length() < 0.1 or player.magic < 1:
+		if player_made == true:
+			if home.name == "World":
+					player.magic_count = max(player.magic_count-1, 0)
+			if home.name == "Player":
+				home.hasfire = false
+				home.magic_count = max(home.magic_count-1, 0)
 		self.get_parent().remove_child(self)
 		self.queue_free()
 

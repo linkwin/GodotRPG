@@ -21,12 +21,15 @@ var magic_count = 0
 
 func _physics_process(delta):
 	var input_vec = Vector2.ZERO
-	magic -= magic_use_rate*magic_count
+	magic -= 5*magic_use_rate*sqrt(magic_count)
+	if magic_count == 0 :
+		magic = min(magic+20*magic_use_rate, 100)
+	print(magic_count)
 	input_vec.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input_vec.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	input_vec = input_vec.normalized()
 	
-	if input_vec != Vector2.ZERO:
+	if input_vec != Vector2.ZERO and health > 0:
 		vel = vel.move_toward(speed*input_vec,delta*acc)
 		dir = input_vec*(1/max(abs(input_vec.x),abs(input_vec.y)))
 		animationtree.set("parameters/Idle/blend_position",dir)
@@ -41,8 +44,8 @@ func _physics_process(delta):
 	
 	
 	
-	if magicstate == "Fire":
-		if Input.get_action_strength("interact2")> 0:
+	if magicstate == "Fire" and health > 0:
+		if Input.get_action_strength("interact2")> 0 and magic > 1:
 			print(delta)
 			var fire = load("res://Scene/Phenomenon/Fire.tscn").instance()
 			get_tree().get_root().get_node("World/TranientEntities").add_child(fire)
@@ -50,7 +53,7 @@ func _physics_process(delta):
 			fire.position = dir*30 +  position
 			fire.player_made = true
 		
-		if not hasfire and Input.get_action_strength("interact3")> 0:
+		if not hasfire and Input.get_action_strength("interact3")> 0 and magic > 1:
 			var firebreath = load("res://Scene/Phenomenon/Fire.tscn").instance()
 			hasfire = true
 			magic_count += 1
