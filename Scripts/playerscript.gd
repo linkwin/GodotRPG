@@ -9,22 +9,22 @@ onready var animationplayer = $AnimationPlayer
 onready var animationtree = $AnimationTree 
 onready var animationstate = animationtree.get("parameters/playback")
 var hasfire = false
-var magicstate = "Fire"
+var magicstate = "None"
+var disp = 0
 
 var dir = Vector2(0,1)
 
 var health = 100
 var magic = 100
-var magic_use_rate = 0.005
+var magic_use_rate = 0.025
 var magic_count = 0
 
 
 func _physics_process(delta):
 	var input_vec = Vector2.ZERO
-	magic -= 5*magic_use_rate*sqrt(magic_count)
+	magic -= magic_use_rate*sqrt(magic_count)
 	if magic_count == 0 :
-		magic = min(magic+20*magic_use_rate, 100)
-	print(magic_count)
+		magic = min(magic+4*magic_use_rate, 100)
 	input_vec.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input_vec.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	input_vec = input_vec.normalized()
@@ -41,9 +41,29 @@ func _physics_process(delta):
 		
 # warning-ignore:return_value_discarded
 	move_and_slide(vel)
+	if Input.is_action_just_pressed("one"):
+		magicstate = "Telep"	
+	if Input.is_action_just_pressed("two"):
+		magicstate = "Fire"
+	if Input.is_action_just_pressed("three"):
+		magicstate = "Air"
+	if Input.is_action_just_pressed("zero"):
+		magicstate = "None"
 	
-	
-	
+	if Input.is_action_just_pressed("increase"):
+		magic_use_rate *= 2
+	if Input.is_action_just_pressed("decrease"):
+		magic_use_rate *= 0.5
+		
+	if magicstate == "Telep" and health > 0:
+		if Input.get_action_strength("interact3")> 0 and magic > 1:
+			disp += 5
+			vel = Vector2.ZERO
+			magic_count = ceil(sqrt(disp/2)*disp/2)
+		if Input.get_action_strength("interact3") == 0 and disp> 0 :
+			position += disp*dir.normalized()
+			disp = 0
+			magic_count = 0
 	if magicstate == "Fire" and health > 0:
 		if Input.get_action_strength("interact2")> 0 and magic > 1:
 			print(delta)
@@ -61,11 +81,6 @@ func _physics_process(delta):
 			get_tree().get_root().get_node("World/TranientEntities/Player/mouth").add_child(firebreath)
 			firebreath.rotation_degrees = 360*atan2(dir.y,dir.x)/(2*PI)+180
 			
-	
-
-
-
-
 
 func _on_Area2D_body_entered(body):
 	var bodytype = body.name
