@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scene/Entities/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/playerscript.gd" type="Script" id=2]
+[ext_resource path="res://Scene/MainWorld/YSortRoot.gd" type="Script" id=3]
+
+[node name="TranientEntities" type="YSort"]
+script = ExtResource( 3 )
+
+[node name="Player" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 1 )]
+position = Vector2( 570, 60 )
+z_as_relative = false
+collision_layer = 15
+collision_mask = 15
+moving_platform_apply_velocity_on_leave = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -165.0, 160.0 ],
+"_edit_vertical_guides_": [ -250.0, 250.0 ]
+}

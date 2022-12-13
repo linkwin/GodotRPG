@@ -1,5 +1,7 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=61 format=2]
 
+[ext_resource path="res://Scene/GUI/GUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/playerscript.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Greenman Walks/Green Man Walk Spritesheet.png" type="Texture" id=13]
 
 [sub_resource type="CapsuleShape2D" id=21]
@@ -494,11 +496,21 @@ graph_offset = Vector2( -639.479, -140.381 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=53]
 
+[sub_resource type="CapsuleShape2D" id=77]
+radius = 3.00004
+height = 17.9999
+
 [node name="KinematicBody2D" type="KinematicBody2D" groups=["Stuff"]]
 rotation = -6.28319
+z_as_relative = false
 collision_layer = 15
 collision_mask = 15
 moving_platform_apply_velocity_on_leave = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -165.0, 160.0 ],
+"_edit_vertical_guides_": [ -250.0, 250.0 ]
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.000116348, 0.750053 )
@@ -548,3 +560,26 @@ parameters/Run/blend_position = Vector2( 0, 1 )
 
 [node name="mouth" type="Node2D" parent="."]
 position = Vector2( 7.14621e-05, -16 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 8.99531, 1050 )
+z_index = 4096
+
+[node name="GUI" parent="Node2D" instance=ExtResource( 1 )]
+physics_interpolation_mode = 1
+margin_left = -258.995
+margin_top = -1215.0
+margin_right = 137.005
+margin_bottom = -1105.0
+rect_scale = Vector2( 0.28, 0.18 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="DamageCollision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 4.46638e-05, -10 )
+shape = SubResource( 77 )
+one_way_collision_margin = 0.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

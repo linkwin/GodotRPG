@@ -20,8 +20,6 @@ script = ExtResource( 6 )
 [node name="Player" parent="TranientEntities" instance=ExtResource( 2 )]
 position = Vector2( 570, 60 )
 rotation = 0.0
-z_as_relative = false
-script = ExtResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="TranientEntities/Player"]
 position = Vector2( -11, -6 )
@@ -145,6 +143,7 @@ state = "Live"
 state = "Live"
 
 [node name="Area2D" parent="LocalEntities" instance=ExtResource( 3 )]
+position = Vector2( 16, 6 )
 collision_layer = 2
 
 [connection signal="spawninstance" from="TranientEntities/Player" to="TranientEntities" method="_on_Player_spawninstance"]
