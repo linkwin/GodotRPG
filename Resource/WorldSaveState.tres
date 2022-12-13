@@ -1,18 +1,19 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://Resource/WorldSave.gd" type="Script" id=1]
+[ext_resource path="res://Scene/MainWorld/YSortRoot.gd" type="Script" id=9]
 [ext_resource path="res://Scene/MainWorld/MainWorld.gd" type="Script" id=11]
 
 [sub_resource type="PackedScene" id=1]
 _bundled = {
-"conn_count": 0,
-"conns": PoolIntArray(  ),
+"conn_count": 10,
+"conns": PoolIntArray( 1073741824, 1073741824, 8, 7, 2, 0, 1073741824, 1073741825, 10, 9, 2, 0, 1073741826, 1073741826, 8, 7, 2, 0, 1073741826, 1073741825, 10, 9, 2, 0, 1073741827, 1073741827, 8, 7, 2, 0, 1073741827, 1073741825, 10, 9, 2, 0, 1073741828, 1073741828, 8, 7, 2, 0, 1073741828, 1073741825, 10, 9, 2, 0, 1073741829, 1073741829, 8, 7, 2, 0, 1073741829, 1073741830, 10, 9, 2, 0 ),
 "editable_instances": [  ],
-"names": PoolStringArray( "World", "z_as_relative", "script", "world_save_state", "enable_loading", "YSort" ),
-"node_count": 1,
-"node_paths": [  ],
-"nodes": PoolIntArray( -1, -1, 5, 0, -1, 4, 1, 0, 2, 1, 3, 2, 4, 3, 0 ),
-"variants": [ false, ExtResource( 11 ), null, true ],
+"names": PoolStringArray( "World", "z_as_relative", "script", "world_save_state", "enable_loading", "YSort", "TranientEntities", "_on_Door_body_entered", "body_entered", "_on_door_entered", "door_entered" ),
+"node_count": 2,
+"node_paths": [ NodePath("LocalEntities/Building1/Portal1"), NodePath("LocalEntities/Building1"), NodePath("LocalEntities/Building1/Portal2"), NodePath("LocalEntities/Building1/FrontDoor"), NodePath("LocalEntities/Building2/FrontDoor"), NodePath("LocalEntities/Building2/BackDoor"), NodePath("LocalEntities/Building2") ],
+"nodes": PoolIntArray( -1, -1, 5, 0, -1, 4, 1, 0, 2, 1, 3, 2, 4, 3, 0, 0, 0, 5, 6, -1, 1, 2, 4, 0 ),
+"variants": [ false, ExtResource( 11 ), null, true, ExtResource( 9 ) ],
 "version": 2
 }
 

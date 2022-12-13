@@ -2,6 +2,8 @@ extends Node2D
 
 var is_paused = false
 
+var save_name_selected = "WorldSaveState"
+
 func _input(event):
 	if (event.is_action_pressed("pause")):
 		do_pause()
@@ -18,7 +20,10 @@ func _on_SaveButton_button_up():
 	FuncLib.save_world()
 
 func _on_LoadButton_button_up():
-	FuncLib.load_world()
+	FuncLib.load_world(save_name_selected)
 
 func _on_QuitButton_button_up():
 	get_tree().quit()
+	
+func _on_save_slot_selected(save_name):
+	save_name_selected = save_name

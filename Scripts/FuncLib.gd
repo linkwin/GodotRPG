@@ -7,8 +7,9 @@ var current_scene_name = "LocalEntities"
 
 onready var world = get_tree().get_root().get_node("World")
 
-func load_world():
+func load_world(save_name):
 	#current_scene_name = world_save.current_scene
+	#world_save = load("res://Resource/" + save_name + ".tres")
 	world.load_entities()
 
 func save_world():
