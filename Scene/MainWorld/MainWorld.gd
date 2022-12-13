@@ -14,10 +14,13 @@ func _ready():
 func load_entities():
 	remove_child($LocalEntities)
 	add_child(world_save_state.fetch_scene("res://Scene/MainWorld/LocalEntities.tscn"))
+	remove_child($TranientEntities)
+	add_child(world_save_state.load_transient_entities())
 
 func _input(event):
 	if (event.is_action_pressed("save")):
 		world_save_state.save_world(self)
+		world_save_state.save_transient_entities($TranientEntities)
 	if (event.is_action_pressed("interact1")):
 		var node = load("res://Scene/Placeable/Placeable.tscn").instance()
 		$LocalEntities.add_child(node)

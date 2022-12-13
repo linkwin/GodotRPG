@@ -19,6 +19,8 @@ var magic = 100
 var magic_use_rate = 0.025
 var magic_count = 0
 
+func _ready():
+	FuncLib.set_children_owned(self)
 
 func _physics_process(delta):
 	var input_vec = Vector2.ZERO

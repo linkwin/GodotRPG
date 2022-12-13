@@ -7,9 +7,19 @@ export(String, FILE) var world_state_save_path = "res://db/WorldSaveState.tscn"
 export(Array) var world_nodes_save
 export var save_path = "res://Resource/WorldSaveState.tres"
 
+export var transient_entities_save_path = "res://db/TransientEntities.tscn"
+
 var world_entities = []
 
 var cached_scenes = []
+
+func save_transient_entities(scene):
+	var packed_scene = PackedScene.new()
+	packed_scene.pack(scene)
+	ResourceSaver.save(transient_entities_save_path, packed_scene)
+	
+func load_transient_entities():
+	return load(transient_entities_save_path).instance()
 
 func get_world_state_instance():
 	return load(world_state_save_path).instance()

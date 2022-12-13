@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scene/MainWorld/LocalEntities.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/Entities/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scene/Placeable/Placeable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resource/WorldSaveState.tres" type="Resource" id=4]
-[ext_resource path="res://Scripts/playerscript.gd" type="Script" id=5]
 [ext_resource path="res://Scene/MainWorld/YSortRoot.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/SetChildrenOwned.gd" type="Script" id=7]
 [ext_resource path="res://Scene/MainWorld/MainWorld.gd" type="Script" id=9]
@@ -20,12 +19,6 @@ script = ExtResource( 6 )
 [node name="Player" parent="TranientEntities" instance=ExtResource( 2 )]
 position = Vector2( 570, 60 )
 rotation = 0.0
-
-[node name="Camera2D" type="Camera2D" parent="TranientEntities/Player"]
-position = Vector2( -11, -6 )
-z_index = -2
-z_as_relative = false
-current = true
 
 [node name="LocalEntities" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 10 )
