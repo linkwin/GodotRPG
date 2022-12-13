@@ -7,6 +7,15 @@ var current_scene_name = "LocalEntities"
 
 onready var world = get_tree().get_root().get_node("World")
 
+func load_world():
+	#current_scene_name = world_save.current_scene
+	world.load_entities()
+
+func save_world():
+	world_save.current_scene = current_scene_name
+	world_save.save_world(world)
+	world_save.save_transient_entities(world.get_node("TranientEntities"))
+
 func cache_current_scene():
 	world_save.cache_scene(world.get_node(current_scene_name))
 

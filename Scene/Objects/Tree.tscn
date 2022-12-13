@@ -25,7 +25,6 @@ func _get_property_list():
 	]
 
 func _ready():
-	print(state)
 	FuncLib.set_children_owned(self)
 
 func _process(delta):
@@ -96,6 +95,7 @@ extents = Vector2( 5.875, 12.0156 )
 
 [node name="Tree" type="KinematicBody2D" groups=["Stuff"]]
 script = SubResource( 7 )
+state = "Live"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 3 )
@@ -128,7 +128,7 @@ position = Vector2( 3, -93 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 5 )
 animation = "BurningTree"
-frame = 2
+frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scene/MainWorld/MainWorld.gd" type="Script" id=1]
-[ext_resource path="res://Resource/WorldSaveState.tres" type="Resource" id=2]
+[ext_resource path="res://Scene/MainWorld/MainWorld.gd" type="Script" id=7]
+[ext_resource path="res://Resource/WorldSaveState.tres" type="Resource" id=8]
 
 [node name="World" type="YSort"]
 z_as_relative = false
-script = ExtResource( 1 )
-world_save_state = ExtResource( 2 )
+script = ExtResource( 7 )
+world_save_state = ExtResource( 8 )
 enable_loading = true
