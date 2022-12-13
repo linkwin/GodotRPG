@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AllItems",
+"language": "GDScript",
+"path": "res://Resource/item_db_loader.gd"
+}, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
@@ -23,11 +28,18 @@ _global_script_classes=[ {
 "class": "WorldSave",
 "language": "GDScript",
 "path": "res://Resource/WorldSave.gd"
+}, {
+"base": "Resource",
+"class": "item",
+"language": "GDScript",
+"path": "res://Resource/item_loading.gd"
 } ]
 _global_script_class_icons={
+"AllItems": "",
 "GitAPI": "",
 "Grid": "",
-"WorldSave": ""
+"WorldSave": "",
+"item": ""
 }
 
 [application]
@@ -44,6 +56,7 @@ UserData="*res://addons/github-integration/scripts/user_data.gd"
 RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 Global="*res://global.gd"
 FuncLib="*res://Scripts/FuncLib.gd"
+ItemsLoader="*res://Resource/item_db_loader.gd"
 
 [display]
 
@@ -55,6 +68,7 @@ window/stretch/mode="2d"
 
 [editor]
 
+search_in_file_extensions=PoolStringArray( "gd", "gdshader", "shader", "json" )
 version_control_autoload_on_startup=true
 version_control_plugin_name="GitAPI"
 
