@@ -33,16 +33,4 @@ func _input(event):
 		var node = load("res://Scene/Placeable/Placeable.tscn").instance()
 		$LocalEntities.add_child(node)
 		FuncLib.set_children_owned($LocalEntities)
-
-
-func _on_SaveButton_button_up():
-	pass # Replace with function body.
-
-
-func _on_LoadButton_button_up():
-	pass # Replace with function body.
-
-
-func _on_QuitButton_button_up():
-	pass # Replace with function body.
 	

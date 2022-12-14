@@ -6,9 +6,9 @@ var save_name_selected = "WorldSaveState"
 
 func _input(event):
 	if (event.is_action_pressed("pause")):
-		do_pause()
+		toggle_pause()
 
-func do_pause():
+func toggle_pause():
 	if is_paused:
 		FuncLib.show_one_child(self, $GUI)
 	else:
@@ -16,8 +16,7 @@ func do_pause():
 	is_paused = !is_paused
 
 func _on_SaveButton_button_up():
-	do_pause()
-	FuncLib.save_world()
+	FuncLib.save_world(save_name_selected)
 	get_node("PauseMenu/HBoxContainer/Panel/SaveSlotPanel/SaveSlotContainer").update_save_slots()
 
 func _on_LoadButton_button_up():

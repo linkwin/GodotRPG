@@ -15,22 +15,22 @@ func load_world(save_name):
 	world.world_save_state = world_save
 	world.load_entities()
 
-func save_world():
-	var new_save = world_save.duplicate()
-	new_save.save_slot_name = "WorldSaveState_" + str(get_num_files_in_dir("res://Resource/WorldSaves/") + 1)
-	
+func save_world(save_name):
 	var dir = Directory.new()
-	if !dir.dir_exists("res://db/" + new_save.save_slot_name + "/"):
+	var new_save = null
+	
+	if !dir.dir_exists("res://db/" + save_name + "/"):
 		dir.open("res://db/")
-		dir.make_dir(new_save.save_slot_name)
+		dir.make_dir(save_name)
+		new_save = world_save.duplicate()
+		new_save.save_slot_name = "WorldSaveState_" + str(get_num_files_in_dir("res://Resource/WorldSaves/") + 1)
+	else:
+		new_save = load("res://Resource/WorldSaves/" + save_name + ".tres")
 	
 	var data = get_viewport().get_texture().get_data()
 	data.flip_y()
-	var fil = File.new()
-	#print(fil.open("res://db/" + new_save.save_slot_name + "/" + "preview.png", fil.WRITE))
-	print(data.save_png("res://db/" + new_save.save_slot_name + "/" + "preview.png"))
-#	print(data.save_png("res://db/preview.png"))
-	#fil.close()
+
+	data.save_png("res://db/" + new_save.save_slot_name + "/" + "preview.png")
 	new_save.save_slot_preview_path = "res://db/" + new_save.save_slot_name + "/" + "preview.png"
 	
 	for scene in world_save.cached_scenes:

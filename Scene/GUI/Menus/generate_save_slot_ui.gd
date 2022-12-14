@@ -28,3 +28,11 @@ func update_save_slots():
 		save_slot.get_node("SaveSlotInfo/SaveInfoContainer/SaveName").text = file.get_slice(".", 0)
 		save_slot.connect("save_slot_selected", FuncLib.world.get_node("UI"), "_on_save_slot_selected")
 		add_child(save_slot)
+		
+	# Add new game save slot
+	var save_slot = load("res://Scene/GUI/Menus/SaveSlot.tscn").instance()
+	save_slot.get_node("SaveSlotInfo/ScenePreview").texture = null
+	save_slot.get_node("SaveSlotInfo/SaveInfoContainer/SaveName").text = "NEW SAVE GAME"
+	var date_time = OS.get_datetime()
+	save_slot.get_node("SaveSlotInfo/SaveInfoContainer/SaveDate").text = str(date_time["month"]) + "/" + str(date_time["day"]) + " " + str(date_time["hour"]) + ":" + str(date_time["minute"])
+	add_child(save_slot)

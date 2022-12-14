@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=2]
-
-[ext_resource path="res://Resource/WorldSave.gd" type="Script" id=1]
-
-[resource]
-script = ExtResource( 1 )
-world_nodes_save = [ "res://db/LocalEntities.tscn", "res://db/House1.tscn" ]
-save_slot_name = "WorldSaveState"
-current_scene = "LocalEntities"
