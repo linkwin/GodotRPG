@@ -1,12 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scene/MainWorld/LocalEntities.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/Entities/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scene/Placeable/Placeable.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Resource/WorldSaveState.tres" type="Resource" id=4]
+[ext_resource path="res://Resource/WorldSaves/WorldSaveState.tres" type="Resource" id=4]
+[ext_resource path="res://Scene/GUI/Menus/PauseMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scene/MainWorld/YSortRoot.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/SetChildrenOwned.gd" type="Script" id=7]
+[ext_resource path="res://Scene/GUI/GUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scene/MainWorld/MainWorld.gd" type="Script" id=9]
+[ext_resource path="res://Scene/GUI/GUI_controller.gd" type="Script" id=10]
 
 [node name="World" type="YSort"]
 z_as_relative = false
@@ -16,7 +19,7 @@ world_save_state = ExtResource( 4 )
 [node name="TranientEntities" type="YSort" parent="."]
 script = ExtResource( 6 )
 
-[node name="Player" parent="TranientEntities" instance=ExtResource( 2 )]
+[node name="Player" parent="TranientEntities" groups=["player"] instance=ExtResource( 2 )]
 position = Vector2( 570, 60 )
 rotation = 0.0
 
@@ -31,6 +34,21 @@ position = Vector2( 1.25, 41.25 )
 position = Vector2( 16, 6 )
 collision_layer = 2
 
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 10 )
+
+[node name="PauseMenu" parent="UI" instance=ExtResource( 5 )]
+visible = false
+
+[node name="GUI" parent="UI" instance=ExtResource( 8 )]
+
 [connection signal="spawninstance" from="TranientEntities/Player" to="TranientEntities" method="_on_Player_spawninstance"]
+[connection signal="button_up" from="UI/PauseMenu/HBoxContainer/Menu/SaveButton" to="UI" method="_on_SaveButton_button_up"]
+[connection signal="button_up" from="UI/PauseMenu/HBoxContainer/Menu/LoadButton" to="UI" method="_on_LoadButton_button_up"]
+[connection signal="button_up" from="UI/PauseMenu/HBoxContainer/Menu/QuitButton" to="UI" method="_on_QuitButton_button_up"]
 
 [editable path="LocalEntities"]
+[editable path="UI/PauseMenu"]
+[editable path="UI/PauseMenu/HBoxContainer/Menu/SaveButton"]
+[editable path="UI/PauseMenu/HBoxContainer/Menu/LoadButton"]
+[editable path="UI/PauseMenu/HBoxContainer/Menu/QuitButton"]

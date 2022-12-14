@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-world_nodes_save = [ "res://db/LocalEntities.tscn", "res://db/House1.tscn" ]
-save_slot_name = "WorldSaveState"
+world_nodes_save = [  ]
+save_slot_preview_path = "res://db/preview.png"
+save_slot_name = "WorldSaveState_2"
 current_scene = "LocalEntities"

@@ -1,6 +1,6 @@
 extends YSort
 
-export var world_save_state :Resource= load("res://Resource/WorldSaveState.tres")
+export var world_save_state :Resource= load("res://Resource/WorldSaves/WorldSaveState.tres")
 
 export var enable_loading = true
 
@@ -33,3 +33,16 @@ func _input(event):
 		var node = load("res://Scene/Placeable/Placeable.tscn").instance()
 		$LocalEntities.add_child(node)
 		FuncLib.set_children_owned($LocalEntities)
+
+
+func _on_SaveButton_button_up():
+	pass # Replace with function body.
+
+
+func _on_LoadButton_button_up():
+	pass # Replace with function body.
+
+
+func _on_QuitButton_button_up():
+	pass # Replace with function body.
+	

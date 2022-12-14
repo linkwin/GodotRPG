@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scene/GUI/Menus/MenuButton.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scene/GUI/Menus/SaveSlot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scene/GUI/Menus/generate_save_slot_ui.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.294118, 0.313726, 0.298039, 1 )
@@ -9,64 +9,23 @@ bg_color = Color( 0.294118, 0.313726, 0.298039, 1 )
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
+rect_min_size = Vector2( 100, 100 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 45.0
-margin_top = 40.0
+margin_left = 800.0
+margin_top = 47.0
 margin_right = -44.0
-margin_bottom = -36.0
-rect_min_size = Vector2( 250, 250 )
+margin_bottom = -49.0
+rect_min_size = Vector2( 150, 250 )
 alignment = 2
 
-[node name="Panel" type="Panel" parent="HBoxContainer"]
-margin_left = 7.0
-margin_right = 287.0
-margin_bottom = 250.0
-rect_min_size = Vector2( 280, 250 )
-custom_styles/panel = SubResource( 1 )
-
-[node name="SaveSlotPanel" type="ScrollContainer" parent="HBoxContainer/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 250, 250 )
-scroll_horizontal_enabled = false
-
-[node name="SaveSlotContainer" type="VBoxContainer" parent="HBoxContainer/Panel/SaveSlotPanel"]
-margin_right = 250.0
-margin_bottom = 404.0
-rect_min_size = Vector2( 250, 250 )
-
-[node name="SaveSlot" parent="HBoxContainer/Panel/SaveSlotPanel/SaveSlotContainer" instance=ExtResource( 2 )]
-
-[node name="SaveSlot2" parent="HBoxContainer/Panel/SaveSlotPanel/SaveSlotContainer" instance=ExtResource( 2 )]
-margin_top = 68.0
-margin_bottom = 132.0
-
-[node name="SaveSlot3" parent="HBoxContainer/Panel/SaveSlotPanel/SaveSlotContainer" instance=ExtResource( 2 )]
-margin_top = 136.0
-margin_bottom = 200.0
-
-[node name="SaveSlot4" parent="HBoxContainer/Panel/SaveSlotPanel/SaveSlotContainer" instance=ExtResource( 2 )]
-margin_top = 204.0
-margin_bottom = 268.0
-
-[node name="SaveSlot5" parent="HBoxContainer/Panel/SaveSlotPanel/SaveSlotContainer" instance=ExtResource( 2 )]
-margin_top = 272.0
-margin_bottom = 336.0
-
-[node name="SaveSlot6" parent="HBoxContainer/Panel/SaveSlotPanel/SaveSlotContainer" instance=ExtResource( 2 )]
-margin_top = 340.0
-margin_bottom = 404.0
-
 [node name="Menu" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 291.0
-margin_right = 391.0
+margin_top = 150.0
+margin_right = 180.0
 margin_bottom = 250.0
-rect_min_size = Vector2( 100, 250 )
+rect_min_size = Vector2( 100, 100 )
 alignment = 1
 
 [node name="SaveButton" parent="HBoxContainer/Menu" instance=ExtResource( 1 )]
@@ -75,9 +34,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 91.0
-margin_right = 100.0
-margin_bottom = 111.0
+margin_top = 16.0
+margin_right = 180.0
+margin_bottom = 36.0
 
 [node name="Label" parent="HBoxContainer/Menu/SaveButton" index="0"]
 text = "Save"
@@ -88,9 +47,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 115.0
-margin_right = 100.0
-margin_bottom = 135.0
+margin_top = 40.0
+margin_right = 180.0
+margin_bottom = 60.0
 
 [node name="Label" parent="HBoxContainer/Menu/LoadButton" index="0"]
 text = "Load"
@@ -101,12 +60,32 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 139.0
-margin_right = 100.0
-margin_bottom = 159.0
+margin_top = 64.0
+margin_right = 180.0
+margin_bottom = 84.0
 
 [node name="Label" parent="HBoxContainer/Menu/QuitButton" index="0"]
 text = "Quit"
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+margin_top = 254.0
+margin_right = 180.0
+margin_bottom = 504.0
+rect_min_size = Vector2( 150, 250 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="SaveSlotPanel" type="ScrollContainer" parent="HBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -96.0
+rect_min_size = Vector2( 150, 250 )
+scroll_horizontal_enabled = false
+
+[node name="SaveSlotContainer" type="VBoxContainer" parent="HBoxContainer/Panel/SaveSlotPanel"]
+margin_right = 150.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 150, 250 )
+script = ExtResource( 3 )
 
 [editable path="HBoxContainer/Menu/SaveButton"]
 [editable path="HBoxContainer/Menu/LoadButton"]

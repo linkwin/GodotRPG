@@ -1,7 +1,7 @@
 extends Node
 
 onready var func_lib = get_node("/root/FuncLib")
-onready var home = get_parent().get_parent()
+onready var home = get_tree().get_nodes_in_group("player")[0]
 onready var health_gauge = $HBoxContainer/Bars/HealthGauge
 onready var magic_gauge = $HBoxContainer/Bars/MagicGauge
 

@@ -1,13 +1,15 @@
 extends Resource
 class_name WorldSave
 
-export(PackedScene) var world_state
-export(String, FILE) var world_state_save_path = "res://db/WorldSaveState.tscn"
-
 export(Array) var world_nodes_save
-export var save_path = "res://Resource/WorldSaveState.tres"
 
-export var transient_entities_save_path = "res://db/TransientEntities.tscn"
+export var save_slot_preview_path = ""
+
+export var save_slot_name = "WorldSaveState"
+
+var save_path = "res://Resource/WorldSaves/" + save_slot_name + ".tres"
+
+var transient_entities_save_path = "res://db/" + save_slot_name + "/TransientEntities.tscn"
 
 export var current_scene = "LocalEntities"
 
@@ -21,28 +23,26 @@ func save_transient_entities(scene):
 	ResourceSaver.save(transient_entities_save_path, packed_scene)
 	
 func load_transient_entities():
+	transient_entities_save_path = "res://db/" + save_slot_name + "/TransientEntities.tscn"
 	return load(transient_entities_save_path).instance()
 
-func get_world_state_instance():
-	return load(world_state_save_path).instance()
-
 func save_world(world_scene):
+	save_path = "res://Resource/WorldSaves/" + save_slot_name + ".tres"
+
+	transient_entities_save_path = "res://db/" + save_slot_name + "/TransientEntities.tscn"
+	
 	print("Saving world...")
 	world_nodes_save = []
 	FuncLib.cache_current_scene()
 	
-	var world_save = PackedScene.new()
-	world_save.pack(world_scene)
-	world_state = world_save
-	ResourceSaver.save(world_state_save_path, world_save)
-	
 	for node in cached_scenes:
 		var scene_pack = PackedScene.new()
 		scene_pack.pack(node)
-		var path = "res://db/" + str(node.name) + ".tscn"
+		var path = "res://db/" + save_slot_name + "/" + str(node.name) + ".tscn"
+		print(path)
 		if (not path in world_nodes_save):
 			world_nodes_save.append(path)
-		ResourceSaver.save(path, scene_pack)
+		print(ResourceSaver.save(path, scene_pack))
 	
 	ResourceSaver.save(save_path, self)
 	

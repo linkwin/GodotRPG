@@ -1,9 +1,6 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=60 format=2]
 
-[ext_resource path="res://Scene/GUI/GUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/playerscript.gd" type="Script" id=2]
-[ext_resource path="res://Scene/GUI/Menus/PauseMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scene/GUI/GUI_controller.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Greenman Walks/Green Man Walk Spritesheet.png" type="Texture" id=13]
 
 [sub_resource type="CapsuleShape2D" id=21]
@@ -563,36 +560,6 @@ parameters/Run/blend_position = Vector2( 0, 1 )
 [node name="mouth" type="Node2D" parent="."]
 position = Vector2( 7.14621e-05, -16 )
 
-[node name="GUIRoot" type="Node2D" parent="."]
-position = Vector2( 8.99531, 1050 )
-z_index = 4096
-script = ExtResource( 4 )
-
-[node name="GUI" parent="GUIRoot" instance=ExtResource( 1 )]
-physics_interpolation_mode = 1
-margin_left = -243.995
-margin_top = -1206.0
-margin_right = 152.005
-margin_bottom = -1096.0
-rect_scale = Vector2( 0.28, 0.18 )
-
-[node name="PauseMenu" parent="GUIRoot" instance=ExtResource( 3 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -248.995
-margin_top = -1209.0
-margin_right = -248.995
-margin_bottom = -1209.0
-
-[node name="Panel" parent="GUIRoot/PauseMenu/HBoxContainer" index="0"]
-margin_left = 0.0
-margin_right = 280.0
-
-[node name="Menu" parent="GUIRoot/PauseMenu/HBoxContainer" index="1"]
-margin_left = 284.0
-margin_right = 384.0
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16
@@ -605,13 +572,4 @@ one_way_collision_margin = 0.0
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[connection signal="save_slot_selected" from="GUIRoot/PauseMenu/HBoxContainer/Panel/SaveSlotPanel/SaveSlotContainer/SaveSlot" to="GUIRoot" method="_on_save_slot_selected"]
-[connection signal="button_up" from="GUIRoot/PauseMenu/HBoxContainer/Menu/SaveButton" to="GUIRoot" method="_on_SaveButton_button_up"]
-[connection signal="button_up" from="GUIRoot/PauseMenu/HBoxContainer/Menu/LoadButton" to="GUIRoot" method="_on_LoadButton_button_up"]
-[connection signal="button_up" from="GUIRoot/PauseMenu/HBoxContainer/Menu/QuitButton" to="GUIRoot" method="_on_QuitButton_button_up"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-
-[editable path="GUIRoot/PauseMenu"]
-[editable path="GUIRoot/PauseMenu/HBoxContainer/Menu/SaveButton"]
-[editable path="GUIRoot/PauseMenu/HBoxContainer/Menu/LoadButton"]
-[editable path="GUIRoot/PauseMenu/HBoxContainer/Menu/QuitButton"]

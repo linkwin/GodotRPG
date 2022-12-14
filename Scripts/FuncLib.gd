@@ -1,21 +1,48 @@
 extends Node
 var save_file = "res://db/savedscene.tscn"
 
-export(Resource) var world_save = preload("res://Resource/WorldSaveState.tres")
+export(Resource) var world_save = preload("res://Resource/WorldSaves/WorldSaveState.tres")
 
 var current_scene_name = "LocalEntities"
 
 onready var world = get_tree().get_root().get_node("World")
 
+
 func load_world(save_name):
 	#current_scene_name = world_save.current_scene
-	#world_save = load("res://Resource/" + save_name + ".tres")
+	print("Loading save game: " + str(save_name))
+	world_save = load("res://Resource/WorldSaves/" + save_name + ".tres")
+	world.world_save_state = world_save
 	world.load_entities()
 
 func save_world():
-	world_save.current_scene = current_scene_name
-	world_save.save_world(world)
-	world_save.save_transient_entities(world.get_node("TranientEntities"))
+	var new_save = world_save.duplicate()
+	new_save.save_slot_name = "WorldSaveState_" + str(get_num_files_in_dir("res://Resource/WorldSaves/") + 1)
+	
+	var dir = Directory.new()
+	if !dir.dir_exists("res://db/" + new_save.save_slot_name + "/"):
+		dir.open("res://db/")
+		dir.make_dir(new_save.save_slot_name)
+	
+	var data = get_viewport().get_texture().get_data()
+	data.flip_y()
+	var fil = File.new()
+	#print(fil.open("res://db/" + new_save.save_slot_name + "/" + "preview.png", fil.WRITE))
+	print(data.save_png("res://db/" + new_save.save_slot_name + "/" + "preview.png"))
+#	print(data.save_png("res://db/preview.png"))
+	#fil.close()
+	new_save.save_slot_preview_path = "res://db/" + new_save.save_slot_name + "/" + "preview.png"
+	
+	for scene in world_save.cached_scenes:
+		new_save.cache_scene(scene)
+	new_save.cache_scene(world.get_node(current_scene_name))
+	new_save.current_scene = current_scene_name
+	new_save.save_world(world)
+	new_save.save_transient_entities(world.get_node("TranientEntities"))
+
+#	world_save.current_scene = current_scene_name
+#	world_save.save_world(world)
+#	world_save.save_transient_entities(world.get_node("TranientEntities"))
 
 func cache_current_scene():
 	world_save.cache_scene(world.get_node(current_scene_name))
@@ -60,6 +87,9 @@ func switch_scene(new_scene_path, door_name, target_door_name):
 	current_scene_name = new_scene.name
 	world.get_node("TranientEntities").add_child(player)
 	
+func get_preview_path():
+	return world_save.save_slot_preview_path
+	
 func save_node(node):
 	print("saving " + str(node.name) + " node...")
 	set_children_owned(node)
@@ -85,3 +115,33 @@ func hide_all_children(parent):
 func set_children_owned(parent):
 	for node in parent.get_children():
 		node.set_owner(parent)
+		
+		
+		
+func get_num_files_in_dir(path):
+	var file_count = 0
+	var dir = Directory.new()
+	if dir.open(path) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if !dir.current_is_dir():
+				file_count += 1
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+	return file_count
+
+func get_files_in_dir(path):
+	var files = []
+	var dir = Directory.new()
+	if dir.open(path) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if !dir.current_is_dir():
+				files.append(file_name)
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+	return files

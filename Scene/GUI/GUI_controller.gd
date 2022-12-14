@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 var is_paused = false
 
@@ -18,6 +18,7 @@ func do_pause():
 func _on_SaveButton_button_up():
 	do_pause()
 	FuncLib.save_world()
+	get_node("PauseMenu/HBoxContainer/Panel/SaveSlotPanel/SaveSlotContainer").update_save_slots()
 
 func _on_LoadButton_button_up():
 	FuncLib.load_world(save_name_selected)
