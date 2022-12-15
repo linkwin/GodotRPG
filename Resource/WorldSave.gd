@@ -7,6 +7,8 @@ export var save_slot_preview_path = ""
 
 export var save_slot_name = "WorldSaveState"
 
+export(Dictionary) var date_time = Time.get_datetime_dict_from_system()
+
 var save_path = "res://Resource/WorldSaves/" + save_slot_name + ".tres"
 
 var transient_entities_save_path = "res://db/" + save_slot_name + "/TransientEntities.tscn"
@@ -32,6 +34,7 @@ func save_world(world_scene):
 	transient_entities_save_path = "res://db/" + save_slot_name + "/TransientEntities.tscn"
 	
 	print("Saving world...")
+	date_time = Time.get_datetime_dict_from_system()
 	world_nodes_save = []
 	FuncLib.cache_current_scene()
 	
@@ -67,9 +70,11 @@ func fetch_scene(new_scene_path):
 	var new_scene = null
 	# Fetch cached scene
 	for scene in cached_scenes:
-		if new_scene_path.ends_with(scene.name + ".tscn"):
-			print("Fetching cached scene: " + str(scene))
-			new_scene = scene
+		var wr = weakref(scene)
+		if wr.get_ref():
+			if new_scene_path.ends_with(scene.name + ".tscn"):
+				print("Fetching cached scene: " + str(scene))
+				new_scene = scene
 
 	# Load scene from disk if not cached
 	if new_scene == null:

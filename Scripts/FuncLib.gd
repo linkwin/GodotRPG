@@ -12,12 +12,16 @@ func load_world(save_name):
 	#current_scene_name = world_save.current_scene
 	print("Loading save game: " + str(save_name))
 	world_save = load("res://Resource/WorldSaves/" + save_name + ".tres")
-	world.world_save_state = world_save
-	world.load_entities()
+	if world_save != null:
+		world.world_save_state = world_save
+		world.load_entities()
 
 func save_world(save_name):
 	var dir = Directory.new()
 	var new_save = null
+	
+	if save_name == "NEW SAVE GAME":
+		save_name = "WorldSaveState_" + str(get_num_files_in_dir("res://Resource/WorldSaves/") + 1)
 	
 	if !dir.dir_exists("res://db/" + save_name + "/"):
 		dir.open("res://db/")
@@ -39,6 +43,8 @@ func save_world(save_name):
 	new_save.current_scene = current_scene_name
 	new_save.save_world(world)
 	new_save.save_transient_entities(world.get_node("TranientEntities"))
+	
+	world_save = new_save
 
 #	world_save.current_scene = current_scene_name
 #	world_save.save_world(world)
@@ -145,3 +151,6 @@ func get_files_in_dir(path):
 	else:
 		print("An error occurred when trying to access the path.")
 	return files
+	
+func get_ui_canvas():
+	return world.get_node("UI")
