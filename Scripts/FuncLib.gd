@@ -11,10 +11,11 @@ onready var world = get_tree().get_root().get_node("World")
 func load_world(save_name):
 	#current_scene_name = world_save.current_scene
 	print("Loading save game: " + str(save_name))
+	var prev_save = world_save
 	world_save = load("res://Resource/WorldSaves/" + save_name + ".tres")
 	if world_save != null:
 		world.world_save_state = world_save
-		world.load_entities()
+		world.load_entities(prev_save)
 
 func save_world(save_name):
 	var dir = Directory.new()
@@ -39,6 +40,7 @@ func save_world(save_name):
 	
 	for scene in world_save.cached_scenes:
 		new_save.cache_scene(scene)
+	
 	new_save.cache_scene(world.get_node(current_scene_name))
 	new_save.current_scene = current_scene_name
 	new_save.save_world(world)

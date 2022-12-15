@@ -42,16 +42,15 @@ func save_world(world_scene):
 		var scene_pack = PackedScene.new()
 		scene_pack.pack(node)
 		var path = "res://db/" + save_slot_name + "/" + str(node.name) + ".tscn"
-		print(path)
 		if (not path in world_nodes_save):
 			world_nodes_save.append(path)
-		print(ResourceSaver.save(path, scene_pack))
+		ResourceSaver.save(path, scene_pack)
 	
 	ResourceSaver.save(save_path, self)
 	
 func cache_scene(current_scene):
 	# Cache scene if not cached
-	print("Caching scene: " + str(current_scene.name))
+	#print("Caching scene: " + str(current_scene.name))
 	var found = false
 	for scene in cached_scenes:
 		if scene.name == current_scene.name:
@@ -70,11 +69,11 @@ func fetch_scene(new_scene_path):
 	var new_scene = null
 	# Fetch cached scene
 	for scene in cached_scenes:
-		var wr = weakref(scene)
-		if wr.get_ref():
-			if new_scene_path.ends_with(scene.name + ".tscn"):
-				print("Fetching cached scene: " + str(scene))
-				new_scene = scene
+#		var wr = weakref(scene)
+#		if wr.get_ref():
+		if new_scene_path.ends_with(scene.name + ".tscn"):
+			print("Fetching cached scene: " + str(scene))
+			new_scene = scene
 
 	# Load scene from disk if not cached
 	if new_scene == null:

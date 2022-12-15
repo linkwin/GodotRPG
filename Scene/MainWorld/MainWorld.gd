@@ -12,15 +12,15 @@ func _ready():
 #		load_entities()
 
 		
-func load_entities():
+func load_entities(prev_save):
 	world_save_state.load_all_saved_scenes()
 	#remove_child($LocalEntities)
 	var local_entities = get_node(FuncLib.current_scene_name)
 	local_entities.name = "pending_delete"
 	remove_child(local_entities)
 	#TODO proper freeing of scenes
-#	world_save_state.destroy_cached_scene(local_entities)
-#	local_entities.queue_free()
+	prev_save.destroy_cached_scene(local_entities)
+	local_entities.queue_free()
 	add_child(world_save_state.fetch_scene("res://Scene/MainWorld/" + 
 		str(world_save_state.current_scene) + ".tscn"))
 	remove_child($TranientEntities)
