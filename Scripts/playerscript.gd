@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+signal player_health_change(health)
+signal player_magic_change(magic)
+
 signal spawninstance(scene_instance)
 const speed = 140
 var vel = Vector2.ZERO
@@ -14,19 +17,21 @@ var disp = 0
 
 var dir = Vector2(0,1)
 
-var health = 100
-var magic = 100
+var health = 100 setget set_health, get_health
+var magic = 100 setget set_magic, get_magic
 var magic_use_rate = 0.025
 var magic_count = 0
 
 func _ready():
+	self.health = 100
+	self.magic = 100
 	FuncLib.set_children_owned(self)
 
 func _physics_process(delta):
 	var input_vec = Vector2.ZERO
-	magic -= magic_use_rate*sqrt(magic_count)
+	self.magic -= magic_use_rate*sqrt(magic_count)
 	if magic_count == 0 :
-		magic = min(magic+4*magic_use_rate, 100)
+		self.magic = min(magic+4*magic_use_rate, 100)
 	input_vec.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input_vec.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	input_vec = input_vec.normalized()
@@ -88,4 +93,18 @@ func _on_Area2D_body_entered(body):
 	var bodytype = body.name
 	if bodytype.get_slice("@", 1) == "Fire":
 		if body.home != self:
-			health -= 0.5
+			self.health -= 0.5
+
+func set_health(new_health):
+	GlobalSignals.emit_signal("player_health_changed", new_health)
+	health = new_health
+	
+func get_health():
+	return health
+	
+func set_magic(new_magic):
+	GlobalSignals.emit_signal("player_magic_changed", new_magic)
+	magic = new_magic
+	
+func get_magic():
+	return magic

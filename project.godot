@@ -50,6 +50,7 @@ UserData="*res://addons/github-integration/scripts/user_data.gd"
 RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 Global="*res://global.gd"
 FuncLib="*res://Scripts/FuncLib.gd"
+GlobalSignals="*res://Scripts/global_signals.gd"
 
 [display]
 

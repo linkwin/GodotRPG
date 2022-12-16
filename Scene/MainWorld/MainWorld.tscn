@@ -16,6 +16,14 @@ z_as_relative = false
 script = ExtResource( 9 )
 world_save_state = ExtResource( 4 )
 
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 10 )
+
+[node name="PauseMenu" parent="UI" instance=ExtResource( 5 )]
+visible = false
+
+[node name="GUI" parent="UI" instance=ExtResource( 8 )]
+
 [node name="TranientEntities" type="YSort" parent="."]
 script = ExtResource( 6 )
 
@@ -34,21 +42,13 @@ position = Vector2( 1.25, 41.25 )
 position = Vector2( 16, 6 )
 collision_layer = 2
 
-[node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource( 10 )
-
-[node name="PauseMenu" parent="UI" instance=ExtResource( 5 )]
-visible = false
-
-[node name="GUI" parent="UI" instance=ExtResource( 8 )]
-
-[connection signal="spawninstance" from="TranientEntities/Player" to="TranientEntities" method="_on_Player_spawninstance"]
 [connection signal="button_up" from="UI/PauseMenu/HBoxContainer/Menu/SaveButton" to="UI" method="_on_SaveButton_button_up"]
 [connection signal="button_up" from="UI/PauseMenu/HBoxContainer/Menu/LoadButton" to="UI" method="_on_LoadButton_button_up"]
 [connection signal="button_up" from="UI/PauseMenu/HBoxContainer/Menu/QuitButton" to="UI" method="_on_QuitButton_button_up"]
+[connection signal="spawninstance" from="TranientEntities/Player" to="TranientEntities" method="_on_Player_spawninstance"]
 
-[editable path="LocalEntities"]
 [editable path="UI/PauseMenu"]
 [editable path="UI/PauseMenu/HBoxContainer/Menu/SaveButton"]
 [editable path="UI/PauseMenu/HBoxContainer/Menu/LoadButton"]
 [editable path="UI/PauseMenu/HBoxContainer/Menu/QuitButton"]
+[editable path="LocalEntities"]
