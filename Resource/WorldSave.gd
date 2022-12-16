@@ -48,15 +48,20 @@ func save_world(world_scene):
 	
 	ResourceSaver.save(save_path, self)
 	
-func cache_scene(current_scene):
+func cache_scene(current_scene_ref):
 	# Cache scene if not cached
 	#print("Caching scene: " + str(current_scene.name))
 	var found = false
 	for scene in cached_scenes:
-		if scene.name == current_scene.name:
+		if scene.name == current_scene_ref.name:
 			found = true
 	if (!found):
-		cached_scenes.append(current_scene)
+		cached_scenes.append(current_scene_ref)
+		
+func clean_cached_scenes():
+	for scene in cached_scenes:
+		if !is_instance_valid(scene):
+			cached_scenes.erase(scene)
 		
 func destroy_cached_scene(scene):
 	cached_scenes.erase(scene)

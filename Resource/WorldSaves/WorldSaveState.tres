@@ -4,17 +4,17 @@
 
 [resource]
 script = ExtResource( 1 )
-world_nodes_save = [ "res://db/WorldSaveState/House1.tscn", "res://db/WorldSaveState/LocalEntities.tscn" ]
+world_nodes_save = [ "res://db/WorldSaveState/LocalEntities.tscn" ]
 save_slot_preview_path = "res://db/WorldSaveState/preview.png"
 save_slot_name = "WorldSaveState"
 date_time = {
-"day": 14,
+"day": 16,
 "dst": false,
-"hour": 23,
-"minute": 26,
+"hour": 0,
+"minute": 22,
 "month": 12,
-"second": 0,
-"weekday": 3,
+"second": 48,
+"weekday": 5,
 "year": 2022
 }
 current_scene = "LocalEntities"

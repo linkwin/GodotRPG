@@ -15,6 +15,7 @@ func load_world(save_name):
 	world_save = load("res://Resource/WorldSaves/" + save_name + ".tres")
 	if world_save != null:
 		world.world_save_state = world_save
+		world_save.clean_cached_scenes()
 		world.load_entities(prev_save)
 
 func save_world(save_name):
@@ -24,23 +25,32 @@ func save_world(save_name):
 	if save_name == "NEW SAVE GAME":
 		save_name = "WorldSaveState_" + str(get_num_files_in_dir("res://Resource/WorldSaves/") + 1)
 	
-	if !dir.dir_exists("res://db/" + save_name + "/"):
+	# check if save folder exists in db
+	if dir.dir_exists("res://db/" + save_name + "/"):
+		# if exists, load world save resource
+		new_save = load("res://Resource/WorldSaves/" + save_name + ".tres")
+	else:	
+		# otherwise, create directory and new world save
 		dir.open("res://db/")
 		dir.make_dir(save_name)
 		new_save = world_save.duplicate()
 		new_save.save_slot_name = "WorldSaveState_" + str(get_num_files_in_dir("res://Resource/WorldSaves/") + 1)
-	else:
-		new_save = load("res://Resource/WorldSaves/" + save_name + ".tres")
-	
+
+	#screen shot, save and assign ref to save slot preview
 	var data = get_viewport().get_texture().get_data()
 	data.flip_y()
-
 	data.save_png("res://db/" + new_save.save_slot_name + "/" + "preview.png")
 	new_save.save_slot_preview_path = "res://db/" + new_save.save_slot_name + "/" + "preview.png"
 	
+	# remove any stale references
+	new_save.clean_cached_scenes()
+	world_save.clean_cached_scenes()
+	
+	# transfer all cached scenes from current save to new save
 	for scene in world_save.cached_scenes:
 		new_save.cache_scene(scene)
 	
+	# setup new save with pertinent info
 	new_save.cache_scene(world.get_node(current_scene_name))
 	new_save.current_scene = current_scene_name
 	new_save.save_world(world)
@@ -98,17 +108,12 @@ func switch_scene(new_scene_path, door_name, target_door_name):
 func get_preview_path():
 	return world_save.save_slot_preview_path
 	
-func save_node(node):
+func save_node(node, save_file_path):
 	print("saving " + str(node.name) + " node...")
 	set_children_owned(node)
 	var scene_pack = PackedScene.new()
 	scene_pack.pack(node)
-	ResourceSaver.save(save_file, scene_pack)
-	
-func load_world_save_state():
-	#get_tree().get_root().remove_child(world)
-	world.queue_free()
-	get_tree().get_root().add_child(world_save.get_world_state_instance())
+	ResourceSaver.save(save_file_path, scene_pack)
 	
 func show_one_child(parent, child):
 	var parent_node = parent
