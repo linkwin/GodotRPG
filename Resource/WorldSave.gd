@@ -53,8 +53,11 @@ func cache_scene(current_scene_ref):
 	#print("Caching scene: " + str(current_scene.name))
 	var found = false
 	for scene in cached_scenes:
-		if scene.name == current_scene_ref.name:
-			found = true
+		if is_instance_valid(scene):
+			if scene.name == current_scene_ref.name:
+				found = true
+		else:
+			cached_scenes.erase(scene)
 	if (!found):
 		cached_scenes.append(current_scene_ref)
 		
@@ -74,11 +77,12 @@ func fetch_scene(new_scene_path):
 	var new_scene = null
 	# Fetch cached scene
 	for scene in cached_scenes:
-#		var wr = weakref(scene)
-#		if wr.get_ref():
-		if new_scene_path.ends_with(scene.name + ".tscn"):
-			print("Fetching cached scene: " + str(scene))
-			new_scene = scene
+		if is_instance_valid(scene):
+			if new_scene_path.ends_with(scene.name + ".tscn"):
+				print("Fetching cached scene: " + str(scene))
+				new_scene = scene
+		else:
+			cached_scenes.erase(scene)
 
 	# Load scene from disk if not cached
 	if new_scene == null:

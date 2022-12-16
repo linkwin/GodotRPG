@@ -43,8 +43,8 @@ func save_world(save_name):
 	new_save.save_slot_preview_path = "res://db/" + new_save.save_slot_name + "/" + "preview.png"
 	
 	# remove any stale references
-	new_save.clean_cached_scenes()
-	world_save.clean_cached_scenes()
+	#new_save.clean_cached_scenes()
+	#world_save.clean_cached_scenes()
 	
 	# transfer all cached scenes from current save to new save
 	for scene in world_save.cached_scenes:
@@ -78,6 +78,7 @@ func switch_scene(new_scene_path, door_name, target_door_name):
 	var current_scene = world.get_node(current_scene_name)
 	world.get_node("TranientEntities/Player").remove_child(player)
 	
+	#world_save.clean_cached_scenes()
 	new_scene = world_save.fetch_scene(new_scene_path)
 	world_save.cache_scene(current_scene)
 

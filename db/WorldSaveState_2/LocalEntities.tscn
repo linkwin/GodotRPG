@@ -245,7 +245,7 @@ state = "Live"
 [node name="Tree13" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 7 )]
 position = Vector2( 347, 218 )
 script = SubResource( 7 )
-state = "Live"
+state = "Burnt"
 
 [node name="Tree14" type="KinematicBody2D" parent="." groups=["Stuff"] instance=ExtResource( 7 )]
 position = Vector2( -609, 920 )
