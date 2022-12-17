@@ -8,6 +8,9 @@ const friction = 2000
 onready var animationplayer = $AnimationPlayer
 onready var animationtree = $AnimationTree 
 onready var animationstate = animationtree.get("parameters/playback")
+onready var inventory = load("res://Resource/ItemInstancing.tres")
+
+
 var hasfire = false
 var magicstate = "None"
 var disp = 0
@@ -25,6 +28,9 @@ func _physics_process(delta):
 	magic -= magic_use_rate*sqrt(magic_count)
 	if magic_count == 0 :
 		magic = min(magic+4*magic_use_rate, 100)
+	if health == 0:
+		magic = 0
+		magic_use_rate = 0
 	input_vec.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input_vec.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	input_vec = input_vec.normalized()
@@ -66,7 +72,6 @@ func _physics_process(delta):
 			magic_count = 0
 	if magicstate == "Fire" and health > 0:
 		if Input.get_action_strength("interact2")> 0 and magic > 1:
-			print(delta)
 			var fire = load("res://Scene/Phenomenon/Fire.tscn").instance()
 			get_tree().get_root().get_node("World/TranientEntities").add_child(fire)
 			magic_count += 1

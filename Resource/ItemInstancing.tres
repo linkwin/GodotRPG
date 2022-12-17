@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Resource
+
+class_name item
+
+onready var item_set = AllItems.data
+
+
+func get_item_by_key(key):
+	if item_set and item_set.has(key):
+		return item_set[key].duplicate(true)
+"
+
+[resource]
+script = SubResource( 1 )

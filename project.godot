@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "item",
 "language": "GDScript",
-"path": "res://Resource/item_loading.gd"
+"path": "res://Scripts/Inventory.gd"
 } ]
 _global_script_class_icons={
 "AllItems": "",
@@ -57,6 +57,7 @@ RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 Global="*res://global.gd"
 FuncLib="*res://Scripts/FuncLib.gd"
 ItemsLoader="*res://Resource/item_db_loader.gd"
+ItemLoading="*res://Resource/item_loading.gd"
 
 [display]
 

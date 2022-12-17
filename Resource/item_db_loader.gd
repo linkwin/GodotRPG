@@ -12,5 +12,4 @@ func _ready():
 	for key in data.keys():
 		data[key]["key"] = key
 		data[key].icon = "res://Assets/ItemIcons/"+data[key].icon
-		print(data[key].icon)
 		
