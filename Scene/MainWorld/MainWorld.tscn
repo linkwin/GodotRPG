@@ -5,6 +5,7 @@
 [ext_resource path="res://Scene/Placeable/Placeable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resource/WorldSaves/WorldSaveState.tres" type="Resource" id=4]
 [ext_resource path="res://Scene/GUI/Menus/PauseMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scene/Items/Items.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scene/MainWorld/YSortRoot.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/SetChildrenOwned.gd" type="Script" id=7]
 [ext_resource path="res://Scene/GUI/GUI.tscn" type="PackedScene" id=8]
@@ -41,6 +42,9 @@ position = Vector2( 1.25, 41.25 )
 [node name="Area2D" parent="LocalEntities" instance=ExtResource( 3 )]
 position = Vector2( 16, 6 )
 collision_layer = 2
+
+[node name="Item Sprites" parent="." instance=ExtResource( 4 )]
+position = Vector2( 73, 25 )
 
 [connection signal="button_up" from="UI/PauseMenu/HBoxContainer/Menu/SaveButton" to="UI" method="_on_SaveButton_button_up"]
 [connection signal="button_up" from="UI/PauseMenu/HBoxContainer/Menu/LoadButton" to="UI" method="_on_LoadButton_button_up"]
