@@ -14,3 +14,11 @@ func _enter_tree():
 
 func _on_Door_body_entered(body):
 	emit_signal("door_entered", target_scene_ref, self.name, target_door_name)
+
+func _get_configuration_warning():
+	if $PlayerStart == null:
+		return "Attach PlayerStart child node"
+	elif !target_scene_ref.is_abs_path():
+		return "Assign Target scene to load"
+	else:
+		return ""
