@@ -18,7 +18,6 @@ func load_entities(prev_save):
 	var local_entities = get_node(FuncLib.current_scene_name)
 	local_entities.name = "pending_delete"
 	remove_child(local_entities)
-	#TODO proper freeing of scenes
 	prev_save.destroy_cached_scene(local_entities)
 	local_entities.queue_free()
 	add_child(world_save_state.fetch_scene("res://Scene/MainWorld/" + 

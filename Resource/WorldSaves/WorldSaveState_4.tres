@@ -8,13 +8,13 @@ world_nodes_save = [ "res://db/WorldSaveState_4/LocalEntities.tscn" ]
 save_slot_preview_path = "res://db/WorldSaveState_4/preview.png"
 save_slot_name = "WorldSaveState_4"
 date_time = {
-"day": 16,
+"day": 21,
 "dst": false,
-"hour": 0,
-"minute": 31,
+"hour": 21,
+"minute": 2,
 "month": 12,
-"second": 41,
-"weekday": 5,
+"second": 54,
+"weekday": 3,
 "year": 2022
 }
 current_scene = "LocalEntities"
