@@ -34,3 +34,6 @@ func set_item_quantity(index, amount):
 		remove_item(index)
 	else:
 		emit_signal("items_changed", [index])
+		
+func on_save():
+	pass

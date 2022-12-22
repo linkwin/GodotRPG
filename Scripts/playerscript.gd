@@ -8,8 +8,7 @@ const friction = 2000
 onready var animationplayer = $AnimationPlayer
 onready var animationtree = $AnimationTree 
 onready var animationstate = animationtree.get("parameters/playback")
-onready var inventory = load("res://Resource/ItemInstancing.tres")
-
+onready var inventory :Resource= load("res://Resource/ItemInstancing.tres")
 
 var hasfire = false
 var magicstate = "None"

@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "AllItems",
-"language": "GDScript",
-"path": "res://Resource/item_db_loader.gd"
-}, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
@@ -32,10 +27,9 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "item",
 "language": "GDScript",
-"path": "res://Scripts/Inventory.gd"
+"path": "res://Resource/Inventory.gd"
 } ]
 _global_script_class_icons={
-"AllItems": "",
 "GitAPI": "",
 "Grid": "",
 "WorldSave": "",
@@ -56,8 +50,8 @@ UserData="*res://addons/github-integration/scripts/user_data.gd"
 RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 Global="*res://global.gd"
 FuncLib="*res://Scripts/FuncLib.gd"
-ItemsLoader="*res://Resource/item_db_loader.gd"
-ItemLoading="*res://Resource/item_loading.gd"
+Inventory="*res://Resource/Inventory.gd"
+AllItems="*res://Resource/all_items.gd"
 
 [display]
 
