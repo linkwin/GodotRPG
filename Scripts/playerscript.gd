@@ -61,12 +61,8 @@ func _physics_process(delta):
 		var collision = get_slide_collision(index)
 		var body = collision.collider.get_parent()
 		if body.name.get_slice("@", 1) == "ItemSprites":
-			Inventory.found_item(body.itemname, 1)
+			Inventory.found_item(body.itemname, -1)
 			body.queue_free()
-			
-	
-	
-	
 	
 	
 	
