@@ -1,5 +1,6 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
+[ext_resource path="res://Resource/Inventory.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/playerscript.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Greenman Walks/Green Man Walk Spritesheet.png" type="Texture" id=13]
 
@@ -571,5 +572,9 @@ one_way_collision_margin = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="Inventory" type="Node2D" parent="."]
+script = ExtResource( 1 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

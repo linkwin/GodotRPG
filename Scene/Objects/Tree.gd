@@ -15,6 +15,23 @@ func _get_property_list():
 		}
 	]
 
+func int_rand_range(a, b):
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	return(rng.randi_range(a, b))
+
+			
+func drops(item_name, min_num_drops, max_num_drops, min_dist=10, max_dist=40):
+	var drop_num = int_rand_range(min_num_drops, max_num_drops)
+	for i in range(drop_num):
+		var pos_x = int_rand_range(min_dist, max_dist)
+		var pos_y = int_rand_range(min_dist, max_dist)
+		var single_item = load("res://Scene/Items/Items.tscn").instance()
+		single_item.itemname = item_name
+		self.add_child(single_item)
+		single_item.position = Vector2(pow(-1,pos_x)*pos_x, pow(-1,pos_y)*pos_y)
+
+
 func _process(delta):
 	if state == "Live":
 		LiveTree.show()
@@ -46,4 +63,5 @@ func _on_Interaction_Base_body_entered(body):
 
 func do_this():
 	if state == "Burning":
+		drops("Coal", 2, 6)
 		state = "Burnt"

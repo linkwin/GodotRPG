@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/player_start.gd" type="Script" id=1]
 [ext_resource path="res://Tilesets/CollisionTiles.tres" type="TileSet" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Scene/Objects/Tree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scene/Objects/Building1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scene/Objects/Door.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scene/Objects/PlayerStart.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/save_test.gd" type="Script" id=8]
 
 [node name="LocalEntities" type="YSort"]
@@ -14,26 +13,6 @@ script = ExtResource( 8 )
 
 [node name="Building1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 401, -63 )
-
-[node name="Portal1" parent="Building1" instance=ExtResource( 6 )]
-position = Vector2( -737, -35 )
-target_scene_ref = "res://Scene/MainWorld/LocalEntities.tscn"
-target_door_name = "Portal2"
-
-[node name="PlayerStart" parent="Building1/Portal1" instance=ExtResource( 7 )]
-position = Vector2( 1, 63 )
-door_name = "Portal1"
-target_door_name = "Portal2"
-
-[node name="Portal2" parent="Building1" instance=ExtResource( 6 )]
-position = Vector2( 259, 206 )
-target_scene_ref = "res://Scene/MainWorld/LocalEntities.tscn"
-target_door_name = "Portal1"
-
-[node name="PlayerStart" parent="Building1/Portal2" instance=ExtResource( 7 )]
-position = Vector2( 3, 57 )
-door_name = "Portal2"
-target_door_name = "Portal1"
 
 [node name="FrontDoor" parent="Building1" instance=ExtResource( 6 )]
 target_scene_ref = "res://Scene/Objects/House1.tscn"
@@ -197,8 +176,6 @@ position = Vector2( 2048, 161 )
 [node name="Tree36" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2005, -32 )
 
-[connection signal="door_entered" from="Building1/Portal1" to="Building1" method="_on_door_entered"]
-[connection signal="door_entered" from="Building1/Portal2" to="Building1" method="_on_door_entered"]
 [connection signal="door_entered" from="Building1/FrontDoor" to="Building1" method="_on_door_entered"]
 [connection signal="door_entered" from="Building2/FrontDoor" to="Building1" method="_on_door_entered"]
 [connection signal="door_entered" from="Building2/BackDoor" to="Building2" method="_on_door_entered"]

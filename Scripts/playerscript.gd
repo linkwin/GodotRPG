@@ -11,7 +11,9 @@ const friction = 2000
 onready var animationplayer = $AnimationPlayer
 onready var animationtree = $AnimationTree 
 onready var animationstate = animationtree.get("parameters/playback")
-onready var inventory :Resource= load("res://Resource/ItemInstancing.tres")
+
+onready var current_avail_items = AllItems.names
+onready var inventory = self.get_node("/root/Inventory")
 
 var hasfire = false
 var magicstate = "None"
@@ -53,6 +55,21 @@ func _physics_process(delta):
 		
 # warning-ignore:return_value_discarded
 	move_and_slide(vel)
+	
+	
+	for index in get_slide_count():
+		var collision = get_slide_collision(index)
+		var body = collision.collider.get_parent()
+		if body.name.get_slice("@", 1) == "ItemSprites":
+			Inventory.found_item(body.itemname, 1)
+			body.queue_free()
+			
+	
+	
+	
+	
+	
+	
 	if Input.is_action_just_pressed("one"):
 		magicstate = "Telep"	
 	if Input.is_action_just_pressed("two"):
@@ -76,6 +93,7 @@ func _physics_process(delta):
 			position += disp*dir.normalized()
 			disp = 0
 			magic_count = 0
+			
 	if magicstate == "Fire" and health > 0:
 		if Input.get_action_strength("interact2")> 0 and magic > 1:
 			var fire = load("res://Scene/Phenomenon/Fire.tscn").instance()

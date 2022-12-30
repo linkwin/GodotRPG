@@ -3,63 +3,7 @@
 [ext_resource path="res://Assets/Natural Objects/BurntTree1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Natural Objects/Tree1.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Natural Objects/BurningTree.png" type="Texture" id=3]
-
-[sub_resource type="GDScript" id=7]
-script/source = "tool
-extends KinematicBody2D
-
-var state = \"Live\"
-
-onready var LiveTree 	=  $Tree1
-onready var BurntTree 	=  $BurntTree1
-onready var BurningTree =  $BurningTree
-
-func _get_property_list():
-	# But in game, Godot will see this
-	return [
-		{
-			\"name\": \"state\",
-			\"usage\": PROPERTY_USAGE_STORAGE,
-			\"type\": TYPE_STRING,
-		}
-	]
-
-func _ready():
-	FuncLib.set_children_owned(self)
-
-func _process(delta):
-	if state == \"Live\":
-		LiveTree.show()
-		BurntTree.hide()
-		BurningTree.hide()
-	if state == \"Burnt\":
-		LiveTree.hide()
-		BurntTree.show()
-		BurningTree.hide()
-	if state == \"Burning\":
-		LiveTree.hide()
-		BurntTree.hide()
-		BurningTree.show()
-	
-var timer
-
-func _on_Interaction_Base_body_entered(body):
-	var bodytype = body.name
-	if state == \"Live\":
-		if bodytype.get_slice(\"@\", 1) == \"Fire\":
-			state = \"Burning\"
-			timer = Timer.new()
-		if state == \"Burning\":
-			timer.connect(\"timeout\",self,\"do_this\")
-			timer.wait_time = 5
-			timer.one_shot = true
-			add_child(timer)
-			timer.start()
-
-func do_this():
-	if state == \"Burning\":
-		state = \"Burnt\"
-"
+[ext_resource path="res://Scene/Objects/Tree.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.99999
@@ -94,8 +38,7 @@ animations = [ {
 extents = Vector2( 5.875, 12.0156 )
 
 [node name="Tree" type="KinematicBody2D" groups=["Stuff"]]
-script = SubResource( 7 )
-state = "Live"
+script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 3 )
@@ -128,7 +71,6 @@ position = Vector2( 3, -93 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 5 )
 animation = "BurningTree"
-frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true

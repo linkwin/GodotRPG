@@ -28,23 +28,17 @@ _global_script_classes=[ {
 "class": "WorldSave",
 "language": "GDScript",
 "path": "res://Resource/WorldSave.gd"
-}, {
-"base": "Resource",
-"class": "item",
-"language": "GDScript",
-"path": "res://Resource/Inventory.gd"
 } ]
 _global_script_class_icons={
 "GameConfig": "",
 "GitAPI": "",
 "Grid": "",
-"WorldSave": "",
-"item": ""
+"WorldSave": ""
 }
 
 [application]
 
-config/name="New Game"
+config/name="HomeGrownRPG"
 run/main_scene="res://Scene/MainWorld/MainWorld.tscn"
 config/icon="res://icon.png"
 

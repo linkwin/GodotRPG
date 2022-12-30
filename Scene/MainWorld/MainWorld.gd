@@ -2,15 +2,10 @@ extends YSort
 
 export var world_save_state :Resource= load("res://Resource/WorldSaves/WorldSaveState.tres")
 
-onready var an_item = item
 export var enable_loading = true
 
 func _ready():
 	FuncLib.set_children_owned(self)
-#	if (enable_loading):
-##		FuncLib.load_world_save_state()
-#
-#		load_entities()
 
 		
 func load_entities(prev_save):
