@@ -1,17 +1,31 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/SnapToGrid.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Grid/SnapToGrid.gd" type="Script" id=1]
+[ext_resource path="res://Assets/ItemIcons/chest_ph.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+extents = Vector2( 16, 16 )
 
-[node name="Placeable" type="Area2D"]
-scale = Vector2( 0.5, 0.5 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15, 15 )
+
+[node name="Placeable" type="StaticBody2D"]
+input_pickable = true
 script = ExtResource( 1 )
+icon_path = "res://Assets/ItemIcons/chest_ph.png"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+vframes = 2
+region_rect = Rect2( 288, 87, 64, 36 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

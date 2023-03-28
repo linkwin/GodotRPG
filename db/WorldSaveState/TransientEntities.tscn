@@ -8,7 +8,7 @@
 script = ExtResource( 3 )
 
 [node name="Player" type="KinematicBody2D" parent="." groups=["Stuff", "player"] instance=ExtResource( 2 )]
-position = Vector2( 250.517, 196.836 )
+position = Vector2( 197.94, 56.8236 )
 z_as_relative = false
 collision_layer = 15
 collision_mask = 15

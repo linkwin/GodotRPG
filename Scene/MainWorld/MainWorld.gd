@@ -33,6 +33,7 @@ func _input(event):
 #		world_save_state.save_transient_entities($TranientEntities)
 	if (event.is_action_pressed("interact1")):
 		var node = load("res://Scene/Placeable/Placeable.tscn").instance()
+		node.icon_path = "res://Assets/ItemIcons/bench.png"
 		$LocalEntities.add_child(node)
 		FuncLib.set_children_owned($LocalEntities)
 	

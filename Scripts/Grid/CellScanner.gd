@@ -13,16 +13,16 @@ func _ready():
 	physics_query.collision_layer = self.collision_layer
 	#load_all_cells()
 	
-func load_all_cells():
-	print(str(grid.grid_dict.size()) + " cells to load!")
-	for i in grid.grid_dict:
-		#var scene = load(grid.grid_dict[i].get_path())
-		var scene_instance = grid.grid_dict[i].instance()
-		scene_instance.name += "(1)"
-		scene_instance.connect("placeable_moved", self, "_on_Area2D_placeable_moved")
-		scene_instance.connect("placeable_placed", self, "_on_Area2D_placeable_placed")
-		scene_instance.position = grid.calculate_world_position(i)
-		get_tree().get_current_scene().get_node("LocalEntities").add_child(scene_instance)
+#func load_all_cells():
+#	print(str(grid.grid_dict.size()) + " cells to load!")
+#	for i in grid.grid_dict:
+#		#var scene = load(grid.grid_dict[i].get_path())
+#		var scene_instance = grid.grid_dict[i].instance()
+#		scene_instance.name += "(1)"
+#		scene_instance.connect("placeable_moved", self, "_on_Area2D_placeable_moved")
+#		scene_instance.connect("placeable_placed", self, "_on_Area2D_placeable_placed")
+#		scene_instance.position = grid.calculate_world_position(i)
+#		get_tree().get_current_scene().get_node("LocalEntities").add_child(scene_instance)
 
 func check_cell(cell_position):
 	# Shape Cast
@@ -41,7 +41,7 @@ func check_cell(cell_position):
 	print(hits)
 
 func _on_Area2D_placeable_moved(from):
-	
+	pass
 	#grid.grid_dict.erase(from)
 
 func _on_Area2D_placeable_placed(to):

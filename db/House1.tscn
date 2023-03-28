@@ -5,7 +5,7 @@
 [ext_resource path="res://Scene/Objects/door.gd" type="Script" id=3]
 [ext_resource path="res://Tilesets/House1.tres" type="TileSet" id=4]
 [ext_resource path="res://Scene/Objects/PlayerStart.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/TX Props.png" type="Texture" id=6]
+[ext_resource path="res://Assets/PlaceHolders/TXATLAS_Props.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/player_start.gd" type="Script" id=7]
 
 [sub_resource type="TileSet" id=1]
