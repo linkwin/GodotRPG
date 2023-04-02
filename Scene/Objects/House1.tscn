@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Tilesets/House1.tres" type="TileSet" id=1]
-[ext_resource path="res://Scripts/SceneSwitch.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/SubSpace/SubSpace2D.gd" type="Script" id=2]
 [ext_resource path="res://Assets/TX_Props_Atlas.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/player_start.gd" type="Script" id=4]
 [ext_resource path="res://Scene/Objects/Door.tscn" type="PackedScene" id=5]
@@ -35,7 +35,7 @@ extents = Vector2( 184.75, 18 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 191.5, 13.75 )
 
-[node name="House1" type="YSort"]
+[node name="House1" type="Node2D"]
 position = Vector2( 69, 99 )
 scale = Vector2( 2, 2 )
 z_index = -1
@@ -61,10 +61,11 @@ tile_data = PoolIntArray( -262143, 0, 0, 1, 0, 0 )
 [node name="FrontDoor" parent="." instance=ExtResource( 5 )]
 position = Vector2( -0.5, 21.5 )
 scale = Vector2( 1, 0.12 )
-target_scene_ref = "res://Scene/MainWorld/LocalEntities.tscn"
+target_scene_ref = "res://Scene/MainWorld/MainWorldSpace.tscn"
 
 [node name="PlayerStart" parent="FrontDoor" instance=ExtResource( 6 )]
 position = Vector2( 1.5, -116.667 )
+prev_scene = "MainWorldSpace"
 door_name = "FrontDoor"
 
 [node name="BackRoomDoor" parent="." instance=ExtResource( 5 )]

@@ -80,7 +80,7 @@ shape = SubResource( 6 )
 [node name="FrontDoor" parent="." instance=ExtResource( 2 )]
 position = Vector2( -0.5, 17 )
 scale = Vector2( 1, 0.14 )
-target_scene_ref = "res://Scene/MainWorld/LocalEntities.tscn"
+target_scene_ref = "res://Scene/MainWorld/MainWorldSpace.tscn"
 
 [node name="PlayerStart" type="Node2D" parent="FrontDoor" groups=["player_start"]]
 position = Vector2( 1, -82.1429 )
@@ -92,7 +92,7 @@ door_name = "FrontDoor"
 [node name="BackDoor" parent="." instance=ExtResource( 2 )]
 position = Vector2( -0.5, -96.5 )
 scale = Vector2( 1, 0.14 )
-target_scene_ref = "res://Scene/MainWorld/LocalEntities.tscn"
+target_scene_ref = "res://Scene/MainWorld/MainWorldSpace.tscn"
 
 [node name="PlayerStart" type="Node2D" parent="BackDoor" groups=["player_start"]]
 position = Vector2( 0.5, 75.0001 )

@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 16, 22 )
 
-[node name="FrontDoor" type="Area2D"]
+[node name="FrontDoor" type="StaticBody2D"]
 collision_layer = 12
 collision_mask = 12
 script = ExtResource( 1 )
@@ -18,5 +18,3 @@ one_way_collision_margin = 0.0
 __meta__ = {
 "_edit_lock_": true
 }
-
-[connection signal="body_entered" from="." to="." method="_on_Door_body_entered"]

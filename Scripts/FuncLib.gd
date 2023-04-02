@@ -3,7 +3,7 @@ var save_file = "res://db/savedscene.tscn"
 
 export(Resource) var world_save = preload("res://Resource/WorldSaves/WorldSaveState.tres")
 
-var current_scene_name = "LocalEntities"
+var current_scene_name = "MainWorldSpace"
 
 onready var world = get_tree().get_root().get_node("World")
 
@@ -74,17 +74,27 @@ func set_children_owned_recursive(parent):
 
 func switch_scene(new_scene_path, door_name, target_door_name):
 	var new_scene = null
-	var player = world.get_node("TranientEntities/Player")
+	var player = world.get_tree().get_nodes_in_group("player")[0]
 	var current_scene = world.get_node(current_scene_name)
-	world.get_node("TranientEntities/Player").remove_child(player)
+	#world.get_node("TranientEntities/Player").remove_child(player)
 	
 	#world_save.clean_cached_scenes()
 	new_scene = world_save.fetch_scene(new_scene_path)
 	world_save.cache_scene(current_scene)
+	if new_scene.name == current_scene.name:
+		new_scene = current_scene
 
 	# Do scene switch
-	world.remove_child(current_scene)
-	world.add_child(new_scene)
+	#world.remove_child(current_scene)
+	#TODO check if already in scene tree
+	var add_to_tree = true
+	for node in world.get_children():
+		if new_scene.name == node.name:
+			add_to_tree = false
+	if add_to_tree:
+		world.add_child(new_scene)
+	
+	#current_scene.hide()
 	
 	# Determine player start position
 	var player_starts = []
@@ -102,9 +112,17 @@ func switch_scene(new_scene_path, door_name, target_door_name):
 			else:
 				if target_door_name == node.door_name:
 					player_start_node = node
-	player.position = player_start_node.global_position
+	
+
+	#player.position = Vector2(0.0, 0.0)
 	current_scene_name = new_scene.name
-	world.get_node("TranientEntities").add_child(player)
+	current_scene.remove_child(player)
+	new_scene.add_child(player)
+	player.global_position = player_start_node.global_position
+	current_scene.hide()	
+	new_scene.show()
+	#player.position = Vector2(0,0)
+	#world.get_node("TranientEntities").add_child(player)
 	
 func get_preview_path():
 	return world_save.save_slot_preview_path

@@ -15,31 +15,11 @@ script = ExtResource( 8 )
 [node name="Building1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 401, -63 )
 
-[node name="Portal1" parent="Building1" instance=ExtResource( 6 )]
-position = Vector2( -737, -35 )
-target_scene_ref = "res://Scene/MainWorld/LocalEntities.tscn"
-target_door_name = "Portal2"
-
-[node name="PlayerStart" parent="Building1/Portal1" instance=ExtResource( 7 )]
-position = Vector2( 1, 63 )
-door_name = "Portal1"
-target_door_name = "Portal2"
-
-[node name="Portal2" parent="Building1" instance=ExtResource( 6 )]
-position = Vector2( 259, 206 )
-target_scene_ref = "res://Scene/MainWorld/LocalEntities.tscn"
-target_door_name = "Portal1"
-
-[node name="PlayerStart" parent="Building1/Portal2" instance=ExtResource( 7 )]
-position = Vector2( 3, 57 )
-door_name = "Portal2"
-target_door_name = "Portal1"
-
 [node name="FrontDoor" parent="Building1" instance=ExtResource( 6 )]
 target_scene_ref = "res://Scene/Objects/House1.tscn"
 
 [node name="PlayerStart" type="Node2D" parent="Building1/FrontDoor" groups=["player_start"]]
-position = Vector2( 1, 39 )
+position = Vector2( 0, 38.75 )
 script = ExtResource( 1 )
 prev_scene = "House1"
 door_name = "FrontDoor"
@@ -197,8 +177,32 @@ position = Vector2( 2048, 161 )
 [node name="Tree36" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2005, -32 )
 
-[connection signal="door_entered" from="Building1/Portal1" to="Building1" method="_on_door_entered"]
-[connection signal="door_entered" from="Building1/Portal2" to="Building1" method="_on_door_entered"]
+[node name="Portal1" parent="." instance=ExtResource( 6 )]
+position = Vector2( -188.6, -91 )
+scale = Vector2( 0.8, 0.8 )
+target_scene_ref = "res://Scene/MainWorld/MainWorldSpace.tscn"
+target_door_name = "Portal2"
+
+[node name="PlayerStart" parent="Portal1" instance=ExtResource( 7 )]
+position = Vector2( 1, 63 )
+prev_scene = "MainWorldSpace"
+door_name = "Portal1"
+target_door_name = "Portal2"
+
+[node name="Portal2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 608.2, 101.8 )
+scale = Vector2( 0.8, 0.8 )
+target_scene_ref = "res://Scene/MainWorld/MainWorldSpace.tscn"
+target_door_name = "Portal1"
+
+[node name="PlayerStart" parent="Portal2" instance=ExtResource( 7 )]
+position = Vector2( -5.25006, 49 )
+prev_scene = "MainWorldSpace"
+door_name = "Portal2"
+target_door_name = "Portal1"
+
 [connection signal="door_entered" from="Building1/FrontDoor" to="Building1" method="_on_door_entered"]
 [connection signal="door_entered" from="Building2/FrontDoor" to="Building1" method="_on_door_entered"]
 [connection signal="door_entered" from="Building2/BackDoor" to="Building2" method="_on_door_entered"]
+[connection signal="door_entered" from="Portal1" to="Building1" method="_on_door_entered"]
+[connection signal="door_entered" from="Portal2" to="Building1" method="_on_door_entered"]

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Door",
+"language": "GDScript",
+"path": "res://Scene/Objects/door.gd"
+}, {
 "base": "Node",
 "class": "GameConfig",
 "language": "GDScript",
@@ -25,6 +30,16 @@ _global_script_classes=[ {
 "path": "res://Scene/Grid/Grid.gd"
 }, {
 "base": "Resource",
+"class": "Space2D",
+"language": "GDScript",
+"path": "res://Scripts/SubSpace/Space2D.gd"
+}, {
+"base": "Node2D",
+"class": "SubSpace2D",
+"language": "GDScript",
+"path": "res://Scripts/SubSpace/SubSpace2D.gd"
+}, {
+"base": "Resource",
 "class": "WorldSave",
 "language": "GDScript",
 "path": "res://Resource/WorldSave.gd"
@@ -35,9 +50,12 @@ _global_script_classes=[ {
 "path": "res://Resource/Inventory.gd"
 } ]
 _global_script_class_icons={
+"Door": "",
 "GameConfig": "",
 "GitAPI": "",
 "Grid": "",
+"Space2D": "",
+"SubSpace2D": "",
 "WorldSave": "",
 "item": ""
 }
@@ -188,6 +206,11 @@ rotate={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
 , Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+change_space={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777240,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

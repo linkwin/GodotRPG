@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Tilesets/House1.tres" type="TileSet" id=1]
-[ext_resource path="res://Scripts/SceneSwitch.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/SubSpace/SubSpace2D.gd" type="Script" id=2]
 [ext_resource path="res://Assets/TX_Props_Atlas.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/player_start.gd" type="Script" id=4]
 [ext_resource path="res://Scene/Objects/Door.tscn" type="PackedScene" id=5]

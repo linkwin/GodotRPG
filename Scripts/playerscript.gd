@@ -24,10 +24,12 @@ var magic = 100 setget set_magic, get_magic
 var magic_use_rate = 0.025
 var magic_count = 0
 
+var block_move = false
+
 func _ready():
 	self.health = 100
 	self.magic = 100
-	FuncLib.set_children_owned(self)
+	#FuncLib.set_children_owned(self)
 
 func _physics_process(delta):
 	var input_vec = Vector2.ZERO
@@ -53,6 +55,15 @@ func _physics_process(delta):
 		
 # warning-ignore:return_value_discarded
 	move_and_slide(vel)
+	#if not block_move:
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision:
+			if collision.collider is Door:
+				block_move = true;
+				var door = collision.collider as Door
+				FuncLib.switch_scene(door.target_scene_ref, door.name, door.target_door_name)
+		
 	if Input.is_action_just_pressed("one"):
 		magicstate = "Telep"	
 	if Input.is_action_just_pressed("two"):

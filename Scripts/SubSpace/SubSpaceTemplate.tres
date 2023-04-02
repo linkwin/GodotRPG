@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/SubSpace/Space2D.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+active = true
+gravity = 98.0
+gravity_vector = Vector2( 0, 1 )
+linear_damp = 0.1
+angular_damp = 1.0
